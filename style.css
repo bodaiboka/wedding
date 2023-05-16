@@ -1,0 +1,144 @@
+@font-face {
+    font-family: hellohoney;
+    src: url(fonts/hello_honey/hello\ honey.otf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(228, 184, 184, 0.7) 24%, rgba(255,255,255,1) 65%);
+}
+
+.site-wrapper {
+    /*
+    background-color: red;
+    box-shadow: 0 0 50px 2px rgb(55, 55, 55);*/
+    max-width: 1200px;
+    margin: auto;
+}
+
+.welcome {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Cinzel', serif;
+}
+
+.welcome h1 {
+    font-family: hellohoney;
+    font-size: 14vw;
+    font-weight: 500;
+    color: rgb(236, 142, 142);
+}
+@media screen and (min-width: 800px) {
+    .welcome h1 {
+        font-family: hellohoney;
+        font-size: 100px;
+        font-weight: 500;
+    }
+}
+
+.welcome > p {
+    margin: 1em 2em 1em 2em;
+    font-size: 4.6vw;
+}
+@media screen and (min-width: 300px) {
+    .welcome > p {
+        margin: 1em 2em 1em 2em;
+        font-size: 3.8vw;
+    }
+}
+@media screen and (min-width: 360px) {
+    .welcome > p {
+        margin: 1em 2em 1em 2em;
+        font-size: 3.4vw;
+    }
+}
+@media screen and (min-width: 500px) {
+    .welcome > p {
+        margin: 1em 2em 1em 2em;
+        font-size: 1em;
+    }
+}
+
+.welcome .date {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.date div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 5vw;
+    color: rgb(236, 142, 142);
+    flex-basis: 80px;
+    padding: 20px;
+}
+@media screen and (min-width: 500px) {
+    .date div {
+        font-size: 1.6em;
+    }
+}
+@media screen and (min-width: 800px) {
+    .date div {
+        font-size: 32px;
+    }
+}
+
+.date .day {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+main {
+    position: relative;
+}
+
+.frame {
+    position: absolute;
+    background-color: transparent;
+    height: 90%;
+    width: 100%;
+    top: 5%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* animation: rota 3s linear infinite; */
+}
+
+
+.f1 {
+
+}
+
+.f2 {
+
+}
+
+
+svg {
+
+    min-height: 700px;
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+    /* border: 1px solid blue;  */
+  }
+
+@keyframes rota {
+    0% { transform: rotate(0deg);}
+    50% { transform: rotate(180deg);}
+    100% { transform: rotate(360deg);}
+}
