@@ -35,10 +35,23 @@ html {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: center;
+    justify-content: start;
     height: 100vh;
     font-family: 'Cinzel', serif;
     color: var(--col-text);
+}
+@media screen and (min-width: 780px) {
+    .welcome {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: 'Cinzel', serif;
+        color: var(--col-text);
+    }
 }
 
 .welcome h1 {
@@ -101,10 +114,9 @@ html {
     justify-content: center;
     /* color: var(--col-primary);
     background-color: transparent; */
-    color: var(--col-white);
-    background-color: var(--col-primary);
+    color: var(--col-primary);
     padding: 5px;
-    border: 3px solid var(--col-gold);
+    /* border: 3px solid var(--col-gold); */
     border-radius: 50%;
 }
 @media screen and (min-width: 500px) {
@@ -147,6 +159,7 @@ main {
 
 .f1 {
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+    display: none;
 }
 
 .f2 {
@@ -159,6 +172,7 @@ main {
         filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
     }
     .f1 {
+        display: flex;
         filter: none;
     }  
 }
