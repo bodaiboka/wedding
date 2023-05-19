@@ -3,6 +3,9 @@
     --col-white: #faf0e6;
     --col-text: #4e4e4e;
     --col-gold: #f7d690;
+    --col-background-1: rgb(228, 128, 115);
+    --col-background-2: #ffa080;
+    --col-background-3: rgb(233, 175, 166);
   }
 
 @font-face {
@@ -17,7 +20,7 @@
 }
 
 html {
-    background-image: linear-gradient(180deg, rgba(228, 184, 184, 0.7) 24%, rgba(255,255,255,1) 65%);
+    background-image: linear-gradient(180deg, var(--col-background-1) 24%, var(--col-background-1) 65%);
 }
 
 
@@ -29,6 +32,13 @@ html {
     margin: auto;
 }
 
+#wedding-canvas {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+}
+
 .welcome {
     width: 100%;
     display: flex;
@@ -38,7 +48,7 @@ html {
     justify-content: start;
     height: 100vh;
     font-family: 'Cinzel', serif;
-    color: var(--col-text);
+    color: var(--col-white);
 }
 @media screen and (min-width: 780px) {
     .welcome {
@@ -50,7 +60,7 @@ html {
         justify-content: center;
         height: 100vh;
         font-family: 'Cinzel', serif;
-        color: var(--col-text);
+        color: var(--col-white);
     }
 }
 
@@ -58,7 +68,7 @@ html {
     font-family: hellohoney;
     font-size: 14vw;
     font-weight: 500;
-    color: var(--col-primary);
+    color: var(--col-white);
     display: flex;
     align-items: center;
     flex-basis: 10%;
@@ -100,7 +110,7 @@ html {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    gap: 20px;
+    gap: 5px;
     flex-basis: 15%;
 }
 
@@ -109,15 +119,19 @@ html {
     flex-direction: column;
     align-items: center;
     font-size: 1em;
-    height: 90px;
     width: 90px;
     justify-content: center;
+    align-items: center;
+    padding: 5px 20px 5px 20px;
     /* color: var(--col-primary);
     background-color: transparent; */
-    color: var(--col-primary);
-    padding: 5px;
-    /* border: 3px solid var(--col-gold); */
-    border-radius: 50%;
+    color: var(--col-white);
+    /* border-radius: 50%; */
+    /* border-bottom: 2px solid var(--col-white); */
+}
+.date div i {
+    color: var(--col-white);
+    font-size: 32px;
 }
 @media screen and (min-width: 500px) {
     .date div {
@@ -130,6 +144,11 @@ html {
     }
 }
 
+.date .day {
+    border-left: 1px solid var(--col-white);
+    border-right: 1px solid var(--col-white);
+}
+
 
 .welcome .details {
 
@@ -137,7 +156,7 @@ html {
 
 .welcome i {
     align-self: center;
-    color: var(--col-primary);
+    color: var(--col-white);
 }
 
 main {
@@ -169,10 +188,12 @@ main {
 @media screen and (min-width: 780px) {
     .f2 {
         display: flex;
+        display: none;
         filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
     }
     .f1 {
         display: flex;
+        display: none;
         filter: none;
     }  
 }
