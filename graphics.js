@@ -2,28 +2,34 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-var myCanvas = document.getElementById("wedding-canvas")
+var myCanvas = document.getElementById("wedding-canvas");
+let siteWrapper = document.getElementById("site-wrapper");
 
 var resizeObserver = new ResizeObserver(entry => {
+    console.log("canvas change");
     camera.aspect = myCanvas.getBoundingClientRect().width / myCanvas.getBoundingClientRect().height;
     camera.updateProjectionMatrix();
     renderer.setSize(myCanvas.getBoundingClientRect().width, myCanvas.getBoundingClientRect().height);
-})
-resizeObserver.observe(myCanvas)
-
-
+});
+resizeObserver.observe(myCanvas);
 
 const scene = new THREE.Scene();
 let rendererHeight = myCanvas.getBoundingClientRect().height;
 const ratio = window.innerWidth / rendererHeight;
-const camera = new THREE.OrthographicCamera(-ratio, ratio, 1, -1, 0.01, 100);
+//const camera = new THREE.OrthographicCamera(-ratio, ratio, 1, -1, 0.01, 100);
+const camera = new THREE.PerspectiveCamera( 45, ratio, 0.01, 1000 );
+scene.add(camera);
 const renderer = new THREE.WebGLRenderer({
 	antialias: true,
 	canvas: myCanvas,
 	alpha: true 
 });
-renderer.setSize( window.innerWidth, rendererHeight );
-renderer.outputEncoding = THREE.sRGBEncoding; 
+
+camera.aspect = myCanvas.getBoundingClientRect().width / myCanvas.getBoundingClientRect().height;
+camera.updateProjectionMatrix();
+renderer.setSize(myCanvas.getBoundingClientRect().width, myCanvas.getBoundingClientRect().height);
+
+renderer.outputColorSpace = THREE.SRGBColorSpace; 
 renderer.ena
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -44,30 +50,38 @@ sun.shadow.mapSize.set(2048, 2048);
 sun.shadow.normalBias = 0.05;
 scene.add(sun);
 
-renderer.setClearColor( 0x000000, 0 );
-camera.position.y = 0;
-camera.position.z = 50;
+const size = 10;
+const divisions = 10;
 
-const sc = 0.05; // scale
+const gridHelper = new THREE.GridHelper( size, divisions );
+//scene.add( gridHelper );
+
+renderer.setClearColor( 0x000000, 0 );
+renderer.setPixelRatio(window.devicePixelRatio);
+camera.position.y = 0;
+camera.position.z = 12;
+
+const sc = 0.4; // scale
 
 let mixer;
+let dove;
 const loader = new GLTFLoader();
 loader.load(
 	'models/dove.glb',
 
 	// called when the resource is loaded
 	function ( gltf ) {
-		const model = gltf.scene;
-		console.log(model);
-		scene.add(model);
-		model.castShadow = true;
-		model.scale.set(sc, sc, sc);
-		model.traverse(function(node) {
+		dove = gltf.scene;
+		console.log(dove);
+		scene.add(dove);
+		dove.castShadow = true;
+		dove.scale.set(sc, sc, sc);
+		dove.traverse(function(node) {
 			if (node.isMesh)
 				node.castShadow = true;
 				node.receiveShadow = true;
 		})
-		mixer = new THREE.AnimationMixer(model);
+		mixer = new THREE.AnimationMixer(dove);
 		const clips = gltf.animations;
 		clips.forEach(clip => {
 			const action = mixer.clipAction(clip);
@@ -82,9 +96,13 @@ const clock = new THREE.Clock();
 function animate() {
 	requestAnimationFrame( animate );
 	//controls.update();
+    
 	renderer.render( scene, camera );
-	if (mixer)
+	if (mixer) {
 		mixer.update( clock.getDelta() );
+        //console.log(dove.position);
+    }
+
 }
 
 animate();

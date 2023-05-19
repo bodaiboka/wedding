@@ -24,19 +24,30 @@ html {
 }
 
 
-.site-wrapper {
+#site-wrapper {
     /*
     background-color: red;
     box-shadow: 0 0 50px 2px rgb(55, 55, 55);*/
     max-width: 1200px;
     margin: auto;
+    position: relative;
+}
+
+.canvas-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 50;
+    pointer-events: none;
+    top: 0px;
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
 }
 
 #wedding-canvas {
-    position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
-    z-index: 50;
 }
 
 .welcome {
@@ -72,6 +83,8 @@ html {
     display: flex;
     align-items: center;
     flex-basis: 10%;
+    z-index: 100;
+    animation: float 4s ease-in-out infinite;
 }
 @media screen and (min-width: 800px) {
     .welcome h1 {
@@ -214,4 +227,10 @@ svg {
     0% { transform: rotate(0deg);}
     50% { transform: rotate(180deg);}
     100% { transform: rotate(360deg);}
+}
+
+@keyframes float {
+    0% { transform: translateY(5%); }
+    50% { transform: translateY(-5%); }
+    100% { transform: translateY(5%); }
 }

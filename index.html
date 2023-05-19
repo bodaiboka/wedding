@@ -13,14 +13,16 @@
 </head>
 <body>
 
-    <div class="site-wrapper">
+    <div class="canvas-container">
+        <canvas id="wedding-canvas"></canvas>
+    </div>
+
+    <div id="site-wrapper">
         <header>
         </header>
-
+        
+        
         <main>
-
-            <canvas id="wedding-canvas"></canvas>
-
             <div class="welcome">
                 <p>Kedves szerettünk! Örömmel értesítünk, hogy</p>
 
@@ -89,5 +91,16 @@
 
 
     <script type="module" src="graphics.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $siteWrapper = $('#site-wrapper');
+            $weddingCanvas = $('#wedding-canvas');
+            $(window).on('resize', (event) => {
+                console.log("window resize");
+                $weddingCanvas.width($('.canvas-container').width());
+            })
+        })
+    </script>
 </body>
 </html>
