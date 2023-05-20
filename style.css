@@ -10,7 +10,11 @@
 
 @font-face {
     font-family: hellohoney;
-    src: url(fonts/hello_honey/hello\ honey.otf);
+    src: url('fonts/hello_honey/hello\ honey.otf');
+}
+@font-face {
+    font-family: wedding-icons;
+    src: url('fonts/WeddingIcons.ttf');
 }
 
 * {
@@ -20,16 +24,25 @@
 }
 
 html {
-    background-image: linear-gradient(180deg, var(--col-background-1) 24%, var(--col-background-1) 65%);
+    background-image: linear-gradient(180deg, var(--col-background-3) 16%, var(--col-background-1) 55%);
+    height: fit-content;
+    height: 100dvh;
 }
 
+body {
+    display: block;
+    height: fit-content;
+    position: relative;
+    width: 100%;
+    height: 100dvh;
+    min-height: 560px;
+    display: flex;
+}
 
 #site-wrapper {
-    /*
-    background-color: red;
-    box-shadow: 0 0 50px 2px rgb(55, 55, 55);*/
     max-width: 1200px;
     margin: auto;
+    height: fit-content;
     position: relative;
 }
 
@@ -43,6 +56,8 @@ html {
     display: flex;
     justify-content: stretch;
     align-items: center;
+    overflow: hidden;
+    min-height: 560px;
 }
 
 #wedding-canvas {
@@ -51,28 +66,26 @@ html {
 }
 
 .welcome {
-    width: 100%;
     display: flex;
+    background: transparent;
+    position: absolute;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: start;
-    height: 100vh;
+    justify-content: center;
+    height: fit-content;
     font-family: 'Cinzel', serif;
     color: var(--col-white);
+    transition: all 1.2s;
 }
-@media screen and (min-width: 780px) {
-    .welcome {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        height: 100vh;
-        font-family: 'Cinzel', serif;
-        color: var(--col-white);
-    }
+.welcome.top {
+    top: 0 !important;
+}
+
+.welcome .welcome-icon {
+    font-family: wedding-icons;
+    font-size: 64px;
 }
 
 .welcome h1 {
@@ -83,8 +96,10 @@ html {
     display: flex;
     align-items: center;
     flex-basis: 10%;
+    padding: 20px 0 20px 0;
     z-index: 100;
     animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(30px 10px 4px #24242434);
 }
 @media screen and (min-width: 800px) {
     .welcome h1 {
@@ -136,11 +151,7 @@ html {
     justify-content: center;
     align-items: center;
     padding: 5px 20px 5px 20px;
-    /* color: var(--col-primary);
-    background-color: transparent; */
     color: var(--col-white);
-    /* border-radius: 50%; */
-    /* border-bottom: 2px solid var(--col-white); */
 }
 .date div i {
     color: var(--col-white);
@@ -162,72 +173,61 @@ html {
     border-right: 1px solid var(--col-white);
 }
 
-
-.welcome .details {
-
-}
-
-.welcome i {
-    align-self: center;
-    color: var(--col-white);
-}
-
 main {
     position: relative;
 }
 
-.frame {
-    position: absolute;
-    background-color: transparent;
-    width: 100%;
-    height: 90%;
-    top: 5%;
-    z-index: -1;
+.info {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    /* animation: rota 3s linear infinite; */
+    text-align: center;
 }
 
-.f1 {
-    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
-    display: none;
+.info .details {
+    margin-top: 40px;
+    cursor: pointer;
+    transition: all .5s;
+    align-self: center;
+    color: var(--col-white);
+}
+.info .details:hover {
+    scale: 1.14;
 }
 
-.f2 {
+.info i {
+    align-self: center;
+    color: var(--col-white);
     
-    display: none;
-}
-@media screen and (min-width: 780px) {
-    .f2 {
-        display: flex;
-        display: none;
-        filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
-    }
-    .f1 {
-        display: flex;
-        display: none;
-        filter: none;
-    }  
 }
 
+.info-bar {
+    display: flex;
+    font-family: wedding-icons;
+    flex-direction: row;
+    color: var(--col-white);
+    font-size: 2em;
+    border-radius: 20px;
+    border: 1px solid var(--col-white);
+    background-color: var(--col-background-3);
+}
 
-svg {
-    min-height: 600px;
-    
-    /* border: 1px solid blue;  */
-}
-@media screen and (min-width: 500px) {
-    svg {
-        min-height: 1100px;
-    }
+.info-bar div {
+    width: 1.4em;
+    height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .2em;
 }
 
-@keyframes rota {
-    0% { transform: rotate(0deg);}
-    50% { transform: rotate(180deg);}
-    100% { transform: rotate(360deg);}
+.info-bar .church {
+    border-radius: 50%;
+    border: 2px solid var(--col-white);
+    background-color: var(--col-background-2);
+    filter: drop-shadow(2px 1px 3px #535353a2);
 }
+
 
 @keyframes float {
     0% { transform: translateY(5%); }

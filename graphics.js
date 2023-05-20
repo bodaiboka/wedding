@@ -17,7 +17,7 @@ const scene = new THREE.Scene();
 let rendererHeight = myCanvas.getBoundingClientRect().height;
 const ratio = window.innerWidth / rendererHeight;
 //const camera = new THREE.OrthographicCamera(-ratio, ratio, 1, -1, 0.01, 100);
-const camera = new THREE.PerspectiveCamera( 45, ratio, 0.01, 1000 );
+const camera = new THREE.PerspectiveCamera( 25, ratio, 0.01, 1000 );
 scene.add(camera);
 const renderer = new THREE.WebGLRenderer({
 	antialias: true,
@@ -59,7 +59,7 @@ const gridHelper = new THREE.GridHelper( size, divisions );
 renderer.setClearColor( 0x000000, 0 );
 renderer.setPixelRatio(window.devicePixelRatio);
 camera.position.y = 0;
-camera.position.z = 12;
+camera.position.z = 16;
 
 const sc = 0.4; // scale
 
@@ -85,24 +85,24 @@ loader.load(
 		const clips = gltf.animations;
 		clips.forEach(clip => {
 			const action = mixer.clipAction(clip);
-			action.play();
-		});
+            action.loop = THREE.LoopRepeat;
+            /* action.zeroSlopeAtStart = false;
+            action.zeroSlopeAtEnd = false; */
+            action.setDuration(16);
+            action.play();
+		
+            function animate() {
+                requestAnimationFrame( animate );
+                renderer.render( scene, camera );
+                var dt = clock.getDelta();
+                mixer.update( dt );
+            }
+            
+            animate();
+        });
 	}, undefined, function(error) {
 		console.error(error);
 	}
 );
 const clock = new THREE.Clock();
 
-function animate() {
-	requestAnimationFrame( animate );
-	//controls.update();
-    
-	renderer.render( scene, camera );
-	if (mixer) {
-		mixer.update( clock.getDelta() );
-        //console.log(dove.position);
-    }
-
-}
-
-animate();

@@ -17,88 +17,90 @@
         <canvas id="wedding-canvas"></canvas>
     </div>
 
-    <div id="site-wrapper">
-        <header>
-        </header>
-        
-        
-        <main>
-            <div class="welcome">
-                <p>Kedves szerettünk! Örömmel értesítünk, hogy</p>
+    <div class="welcome" >
+        <div class="welcome-icon">É</div>
 
-                <h1>ichárnin</h1>
+        <p class="welcome-text">Kedves szerettünk! Örömmel értesítünk, hogy</p>
+
+        <h1>ichárnin</h1>
+
+        <p>örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja</p>
+
+        <div class="date">
+            <div class="month"><p>július</p></div>
+            <div class="day"><p>28</p><p>péntek</p></div>
+            <div class="year"><p>2023</p></div>
+        </div>
+
+        <div class="info">
+            <div class="details">
+                <p>részletek</p>
+                <i class="bi bi-chevron-double-down"></i>
+                <!-- <i class="bi bi-chevron-double-up"></i> -->
+                
+            </div>
     
-                <p>örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja</p>
-
-                <div class="date">
-                    <div class="month"><p>július</p></div>
-                    <div class="day"><p>28</p><p>péntek</p></div>
-                    <div class="year"><p>2023</p></div>
-                </div>
-
-                <div class="details">
-                    <p>részletek</p>
-                    <i class="bi bi-chevron-double-down"></i>
-                </div>
-                
+            <div class="info-bar">
+                <div class="church">&#x47;</div>
+                <div class="civil">&#x50;</div>
+                <div class="dinner">&#xFF;</div>
+                <div class="cake">&#xB6;</div>
             </div>
+        </div>
 
-            <!-- preserveAspectRatio="none" -->
-            <div class="frame f1">
-                
-                <svg width="100%" height="100%" viewBox="30 0 40 100" >
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="50%" y2="120%">
-                          <stop offset="22%" stop-color="#c79e48" />
-                          <stop offset="38%" stop-color="#f7d690" />
-                          <stop offset="67%" stop-color="#c79e48" />
-                          <stop offset="71%" stop-color="#f7d690" />
-                        </linearGradient>
-                      </defs>
-                      
-                      <polygon fill="none" stroke-width=0.8 stroke="white"
-                    transform="rotate(0, 50, 50)"
-                             points="50,5 90,25 90,75 50,95 10,75 10,25" />
-                    <!-- <polygon fill="none" stroke-width=0.8 stroke="url(#gradient)"
-                    transform="rotate(0, 50, 50)"
-                             points="50,5 90,25 90,75 50,95 10,75 10,25" /> -->
-                </svg>
-            </div>
-            
-            <div class="frame f2">
-                
-                <svg width="100%" height="100%" viewBox="30 0 40 100" >
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="50%" y2="120%">
-                          <stop offset="22%" stop-color="#c79e48" />
-                          <stop offset="38%" stop-color="#f7d690" />
-                          <stop offset="67%" stop-color="#c79e48" />
-                          <stop offset="71%" stop-color="#f7d690" />
-                        </linearGradient>
-                      </defs>
-                    <polygon fill="none" stroke-width=0.8 stroke="white"
-                    transform="translate(50, 50) scale(0.95) translate(-50, -50) rotate(40, 50, 50)"
-                             points="50,5 90,25 90,75 50,95 10,75 10,25" />
-                </svg>
-            </div>
-           
-        </main>
-
-        <footer>
-
-        </footer>
     </div>
-
 
     <script type="module" src="graphics.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $siteWrapper = $('#site-wrapper');
+
+            isInfoOpen = false;
+            $welcome = $('.welcome');
             $weddingCanvas = $('#wedding-canvas');
-            $(window).on('resize', (event) => {
-                console.log("window resize");
+            $detailsButton = $('.info .details');
+            let welcomeTitleOffset = $('.welcome h1').offset().top;
+            $('.info-bar').css({
+                'display': 'none'
+            });
+
+            const toggleInfo = () => {
+                if (isInfoOpen) {
+                    let welcomeOfset = $('body').height()/2 - $welcome.height()/2;
+                    console.log($('body').height(), $welcome.height(), welcomeOfset);
+                    $welcome.css({
+                        'top': `${welcomeOfset}px`
+                    });
+                } else {
+                    $welcome.css({
+                            'top': `${0 - welcomeTitleOffset}px`
+                    })
+                }
+                isInfoOpen = !isInfoOpen;
+            }
+
+            const onResize = () => {
+                let welcomeOfset = $('body').height()/2 - $welcome.height()/2;
+                console.log($('body').height(), $welcome.height(), welcomeOfset);
+                $welcome.css({
+                    'top': `${welcomeOfset}px`
+                });
                 $weddingCanvas.width($('.canvas-container').width());
+            }
+
+            onResize();
+            
+            $(window).on('resize', onResize);
+
+            
+            $detailsButton.on('click', (event) => {
+                console.log('click');
+                $('.info-bar').slideToggle(350, () => {
+                        //$welcome.toggleClass('top');
+                        toggleInfo()
+                        
+                    });
+                
             })
         })
     </script>
