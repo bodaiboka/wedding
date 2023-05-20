@@ -22,7 +22,7 @@
 
         <p class="welcome-text">Kedves szerettünk! Örömmel értesítünk, hogy</p>
 
-        <h1>ichárnin</h1>
+        <div class="welcome-title"><h1>ichárnin</h1></div>
 
         <p>örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja</p>
 
@@ -59,7 +59,7 @@
             $welcome = $('.welcome');
             $weddingCanvas = $('#wedding-canvas');
             $detailsButton = $('.info .details');
-            let welcomeTitleOffset = $('.welcome h1').offset().top;
+            let welcomeTitleOffset = $('.welcome .date').offset().top;
             $('.info-bar').css({
                 'display': 'none'
             });
@@ -97,7 +97,8 @@
                 console.log('click');
                 $('.info-bar').slideToggle(350, () => {
                         //$welcome.toggleClass('top');
-                        toggleInfo()
+                        toggleInfo();
+                        $('.welcome .date').toggleClass('transparent');
                         
                     });
                 

@@ -88,6 +88,15 @@ body {
     font-size: 64px;
 }
 
+.welcome .welcome-title {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all .5s;
+}
+
 .welcome h1 {
     font-family: hellohoney;
     font-size: 14vw;
@@ -140,6 +149,12 @@ body {
     margin-top: 20px;
     gap: 5px;
     flex-basis: 15%;
+    opacity: 1;
+    transition: all .5s;
+}
+
+.date.transparent {
+    opacity: 0;
 }
 
 .date div {
@@ -193,6 +208,10 @@ main {
 }
 .info .details:hover {
     scale: 1.14;
+}
+
+.info .details p {
+    font-size: .8em;
 }
 
 .info i {
