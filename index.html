@@ -41,10 +41,10 @@
             </div>
     
             <div class="info-bar">
-                <div class="church">&#x47;</div>
-                <div class="civil">&#x50;</div>
-                <div class="dinner">&#xFF;</div>
-                <div class="cake">&#xB6;</div>
+                <div class="church-tbn">&#x47;</div>
+                <div class="civil-btn">&#x50;</div>
+                <div class="dinner-btn">&#xFF;</div>
+                <div class="cake-btn">&#xB6;</div>
             </div>
         </div>
 
@@ -59,6 +59,11 @@
             $welcome = $('.welcome');
             $weddingCanvas = $('#wedding-canvas');
             $detailsButton = $('.info .details');
+            $infoBar = $('.info-bar');
+            $churchBtn = $('.church-btn');
+            $civilBtn = $('.civil-btn');
+            $dinnerBtn = $('.dinner-btn');
+            $cakeBtn = $('.cake-btn');
             let welcomeTitleOffset = $('.welcome .date').offset().top;
             $('.info-bar').css({
                 'display': 'none'
@@ -87,9 +92,7 @@
                 });
                 $weddingCanvas.width($('.canvas-container').width());
             }
-
             onResize();
-            
             $(window).on('resize', onResize);
 
             
@@ -101,8 +104,13 @@
                         $('.welcome .date').toggleClass('transparent');
                         
                     });
-                
             })
+
+            $infoBar.on("click", "div", function() {
+                $infoBar.css({
+                    '--translate-btn': `${$(this).index() * $(this).outerWidth(true)}px`
+                });
+            });
         })
     </script>
 </body>

@@ -118,6 +118,12 @@ body {
     }
 }
 
+@keyframes float {
+    0% { transform: translateY(5%); }
+    50% { transform: translateY(-5%); }
+    100% { transform: translateY(5%); }
+}
+
 .welcome > p {
     margin: 1em 2em 1em 2em;
     font-size: 4.6vw;
@@ -229,27 +235,58 @@ main {
     border-radius: 20px;
     border: 1px solid var(--col-white);
     background-color: var(--col-background-3);
+    position: relative;
+    --translate-btn: 0;
 }
 
 .info-bar div {
-    width: 1.4em;
-    height: 1.4em;
+    width: 1.5em;
+    height: 1.5em;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: .2em;
+    margin: .14em;
+    z-index: 2;
+    cursor: pointer;
+    transition: all .25s;
 }
 
-.info-bar .church {
+.info-bar div:hover {
+    scale: 1.4;
+}
+
+.info-bar .dinner-btn {
+    scale: 0.9;
+}
+
+.info-bar .dinner-btn:hover {
+    scale: 1.1;
+}
+
+.info-bar .cake-btn {
+    scale: 0.9;
+}
+
+.info-bar .cake-btn:hover {
+    scale: 1.2;
+}
+
+.info-bar::after {
+    content: '';
+    z-index: 1;
+    position: absolute;
     border-radius: 50%;
     border: 2px solid var(--col-white);
     background-color: var(--col-background-2);
+    width: 1.5em;
+    height: 1.5em;
+    margin: .14em;
+    box-sizing: border-box;
     filter: drop-shadow(2px 1px 3px #535353a2);
+    transition: all .5s;
+    translate: var(--translate-btn);
 }
 
 
-@keyframes float {
-    0% { transform: translateY(5%); }
-    50% { transform: translateY(-5%); }
-    100% { transform: translateY(5%); }
-}
+
+
