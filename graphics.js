@@ -136,6 +136,10 @@ detailsBtn.addEventListener('click', () => {
             camera.position.y = object.y;
         })
         tween1.start();
+        tween1.onComplete(() => {
+            dove.scale.set(scw, scw, scw);
+            dove.translateY(-6);
+        })
     } else {
         const tween2 = new TWEEN.Tween({x: camera.position.x, y: camera.position.y, z: camera.position.z })
         .to({x: camera.position.x, y: 0, z: camera.position.z}, 1000);
@@ -144,6 +148,9 @@ detailsBtn.addEventListener('click', () => {
             camera.position.y = object.y;
         })
         tween2.start();
+        dove.scale.set(sc, sc, sc);
+        dove.translateY(6);
+        
     }
     
 })
