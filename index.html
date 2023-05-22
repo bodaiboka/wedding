@@ -47,14 +47,32 @@
                 <div class="cake-btn">&#xB6;</div>
             </div>
         </div>
+    </div>
 
+    <div class="info-details-container start">
+        <div class="info-details-section">
+            <h2>Templomi esküvő</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+        </div>
+        <div class="info-details-section">
+            <h2>Polgári esküvő</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+        </div>
+        <div class="info-details-section">
+            <h2>Vacsora</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+        </div>
+        <div class="info-details-section">
+            <h2>Torta</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+        </div>
     </div>
 
     <script type="module" src="graphics.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-
+            let infoTimeOut;
             isInfoOpen = false;
             $welcome = $('.welcome');
             $weddingCanvas = $('#wedding-canvas');
@@ -64,52 +82,89 @@
             $civilBtn = $('.civil-btn');
             $dinnerBtn = $('.dinner-btn');
             $cakeBtn = $('.cake-btn');
-            let welcomeTitleOffset = $('.welcome .date').offset().top;
+            $infoDetailsContainer = $('.info-details-container');
+            $welcomeTitle = $('.welcome-title');
+            let welcomeOfset;
+            let welcomeTitleOffset = $('.welcome .info').offset().top - $welcomeTitle.outerHeight(true);
             $('.info-bar').css({
                 'display': 'none'
             });
-
+            $infoDetailsContainer.css({
+                'display': 'none'
+            });
+            
             const toggleInfo = () => {
                 if (isInfoOpen) {
-                    let welcomeOfset = $('body').height()/2 - $welcome.height()/2;
+                    welcomeOfset = $('body').height()/2 - $welcome.height()/2;
                     console.log($('body').height(), $welcome.height(), welcomeOfset);
                     $welcome.css({
                         'top': `${welcomeOfset}px`
                     });
+                    
                 } else {
                     $welcome.css({
                             'top': `${0 - welcomeTitleOffset}px`
-                    })
+                    });
+                    let infoOffset =  $welcomeTitle.outerHeight(true) + $('.info').outerHeight(true);
+                    console.log('infoOffset', infoOffset);
+                    $infoDetailsContainer.css({
+                        'top': `${infoOffset}px`
+                    });
                 }
                 isInfoOpen = !isInfoOpen;
             }
 
             const onResize = () => {
-                let welcomeOfset = $('body').height()/2 - $welcome.height()/2;
-                console.log($('body').height(), $welcome.height(), welcomeOfset);
-                $welcome.css({
-                    'top': `${welcomeOfset}px`
-                });
+                if (!isInfoOpen) {
+                    let welcomeOfset = $('body').height()/2 - $welcome.height()/2;
+                    $welcome.css({
+                        'top': `${welcomeOfset}px`
+                    });
+                }
                 $weddingCanvas.width($('.canvas-container').width());
             }
+
             onResize();
+
             $(window).on('resize', onResize);
 
-            
             $detailsButton.on('click', (event) => {
+                if (infoTimeOut) {
+                    clearTimeout(infoTimeOut);
+                }
                 console.log('click');
-                $('.info-bar').slideToggle(350, () => {
-                        //$welcome.toggleClass('top');
-                        toggleInfo();
-                        $('.welcome .date').toggleClass('transparent');
-                        
-                    });
+                if (isInfoOpen) {
+                    $infoDetailsContainer.addClass('start')
+                    $infoDetailsContainer.fadeOut(500, () => {
+                            $('.info-bar').slideToggle(350, () => {
+                            toggleInfo();
+                            $('.welcome > p').toggleClass('transparent');
+                            $('.welcome .date').toggleClass('transparent');
+                        });
+                    })
+                } else {
+                    $('.info-bar').slideToggle(350, () => {
+                            toggleInfo();
+                            $('.welcome > p').toggleClass('transparent');
+                            $('.welcome .date').toggleClass('transparent');
+                            infoTimeOut = setTimeout(() => {
+                                $infoDetailsContainer.fadeIn(500);
+                                $infoDetailsContainer.removeClass('start')
+                            }, 500)
+                            
+                    })
+                }
+                
             })
+
+            
 
             $infoBar.on("click", "div", function() {
                 $infoBar.css({
                     '--translate-btn': `${$(this).index() * $(this).outerWidth(true)}px`
                 });
+                container = document.querySelector('.info-details-container');
+                container.scrollTo($(this).index() * $infoDetailsContainer.first().outerWidth(true), 250);
             });
         })
     </script>
