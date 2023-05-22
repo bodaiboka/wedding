@@ -1,9 +1,11 @@
 import * as THREE from 'three';
+import * as TWEEN from '@tweenjs/tween.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 var myCanvas = document.getElementById("wedding-canvas");
 let siteWrapper = document.getElementById("site-wrapper");
+let detailsBtn = document.querySelector('.details');
 
 var resizeObserver = new ResizeObserver(entry => {
     console.log("canvas change");
@@ -62,10 +64,12 @@ camera.position.y = 0;
 camera.position.z = 16;
 
 const sc = 0.4; // scale
-
+const scw = 0.13;
 let mixer;
 let dove;
+const clock = new THREE.Clock();
 const loader = new GLTFLoader();
+const loader2 = new GLTFLoader();
 loader.load(
 	'models/dove.glb',
 
@@ -90,19 +94,58 @@ loader.load(
             action.zeroSlopeAtEnd = false; */
             action.setDuration(16);
             action.play();
-		
-            function animate() {
-                requestAnimationFrame( animate );
-                renderer.render( scene, camera );
-                var dt = clock.getDelta();
-                mixer.update( dt );
-            }
-            
-            animate();
         });
 	}, undefined, function(error) {
 		console.error(error);
 	}
 );
-const clock = new THREE.Clock();
+
+loader2.load(
+	'models/churchbake.glb',
+	function ( gltf ) {
+		const model = gltf.scene;
+		console.log(model);
+		scene.add(model);
+		const grass = scene.getObjectByName("GRASS001");
+		console.log(grass);
+		model.scale.set(scw, scw, scw);
+        model.translateY(-6);
+        model.rotateY(32)
+	}
+);
+
+function animate() {
+    TWEEN.update();
+    requestAnimationFrame( animate );
+    renderer.render( scene, camera );
+    var dt = clock.getDelta();
+    if (mixer) {
+        mixer.update( dt );
+    }
+}
+
+animate();
+
+
+detailsBtn.addEventListener('click', () => {
+    if (!isInfoOpen) {
+        const tween1 = new TWEEN.Tween({x: camera.position.x, y: camera.position.y, z: camera.position.z })
+        .to({x: camera.position.x, y: -4.7, z: camera.position.z}, 1000);
+
+        tween1.onUpdate((object, elapsed) => {
+            camera.position.y = object.y;
+        })
+        tween1.start();
+    } else {
+        const tween2 = new TWEEN.Tween({x: camera.position.x, y: camera.position.y, z: camera.position.z })
+        .to({x: camera.position.x, y: 0, z: camera.position.z}, 1000);
+
+        tween2.onUpdate((object, elapsed) => {
+            camera.position.y = object.y;
+        })
+        tween2.start();
+    }
+    
+})
+
 
