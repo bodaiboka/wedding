@@ -32,7 +32,6 @@ camera.updateProjectionMatrix();
 renderer.setSize(myCanvas.getBoundingClientRect().width, myCanvas.getBoundingClientRect().height);
 
 renderer.outputColorSpace = THREE.SRGBColorSpace; 
-renderer.ena
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.CineonToneMapping;
