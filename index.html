@@ -184,12 +184,13 @@
 
             $.get("http://192.168.41.118:3000/guests", function(data) {
                 data.forEach(element => {
+                    console.log(`attending = ${element.attending}`);
                     $infoTable.append(
                         `<div class="info-table-values">
                             <div class="name">${element.name}</div>
-                            <div><input class="attending" type="checkbox" checked="true"></div>
-                            <div><input type="checkbox"></div>
-                            <div><input type="checkbox"></div>
+                            <div><input class="attending" type="checkbox" ${element.attending?'checked':''}></div>
+                            <div><input type="checkbox" ${element.vegetarian?'checked':''}></div>
+                            <div><input type="checkbox" ${element.age3?'checked':''}></div>
                         </div>`
                     )
                 });
