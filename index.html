@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <button type="button">Add guest</button>
-                <button type="button">Send answer</button>
+                <button class="info-send-button" type="button">Send answer</button>
             </form>
         </div>
     </div>
@@ -101,6 +101,7 @@
             $infoDetailsContainer = $('.info-details-container');
             $welcomeTitle = $('.welcome-title');
             $infoTable = $(".info-table");
+            $infoSendButton = $(".info-send-button");
             let welcomeOfset;
             let welcomeTitleOffset = $('.welcome .info').offset().top - $welcomeTitle.outerHeight(true);
             $('.info-bar').css({
@@ -139,6 +140,11 @@
                     });
                 }
                 $weddingCanvas.width($('.canvas-container').width());
+            }
+
+            const getQueryParam = (param) => {
+                let params = new URLSearchParams(window.location.search);
+                return params.get(param);
             }
 
             onResize();
@@ -182,17 +188,44 @@
                 container.scrollTo($(this).index() * $infoDetailsContainer.first().outerWidth(true), 250);
             });
 
-            $.get("http://192.168.41.118:3000/guests", function(data) {
+            let group = getQueryParam('g');
+
+            $.get(`http://108.61.178.253:3000/groups/${group}/guests`, function(data) {
                 data.forEach(element => {
-                    console.log(`attending = ${element.attending}`);
                     $infoTable.append(
-                        `<div class="info-table-values">
+                        `<div class="info-table-values" data-id="${element._id}">
                             <div class="name">${element.name}</div>
                             <div><input class="attending" type="checkbox" ${element.attending?'checked':''}></div>
-                            <div><input type="checkbox" ${element.vegetarian?'checked':''}></div>
-                            <div><input type="checkbox" ${element.age3?'checked':''}></div>
+                            <div><input class="vegetarian" type="checkbox" ${element.vegetarian?'checked':''}></div>
+                            <div><input class="age3" type="checkbox" ${element.age3?'checked':''}></div>
                         </div>`
                     )
+                });
+            })
+
+            let data = [];
+
+            $infoSendButton.on("click", (event) => {
+                data.length = 0;
+                $(".info-table-values").each(function() {
+                    data.push({
+                        _id: $(this).data('id'),
+                        attending: $(this).find('.attending').is(':checked'),
+                        vegetarian: $(this).find('.vegetarian').is(':checked'),
+                        age3: $(this).find('.age3').is(':checked')
+                    })
+                });
+                $.ajax({
+                    url: "http://108.61.178.253:3000/guests",
+                    type: 'PUT',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(data) {
+                        console.log(data);
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
                 });
             }) 
 
