@@ -1,11 +1,12 @@
 {
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/$1",
-        "headers": {
-          "Cache-Control": "s-maxage=0"
-        }
+        "src": "fonts/(.*)",
+        "dest": "fonts/$1"
+      },
+      {
+        "src": "models/(.*)",
+        "dest": "models/$1"
       }
     ]
   }
