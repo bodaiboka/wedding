@@ -124,8 +124,8 @@ loader2.load(
     
             // Apply rotation to the camera
             //camera.rotation.set(betaRad, alphaRad, -gammaRad);
-            let beta = (event.beta >= 45 ? 45 : (event.beta <= 0 ? 0 : event.beta)) / 10; 
-            let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= -45 ? -45 : event.gamma)) / 10; // Y-axis rotation in degrees
+            let beta = (event.beta >= 45 ? 45 : (event.beta <= 0 ? 0 : event.beta)) / 2.0; 
+            let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= -45 ? -45 : event.gamma)); // Y-axis rotation in degrees
             let gammaRad = gamma * (Math.PI / 180);
             let betaRad = beta * (Math.PI / 180);
             gammaRad += Math.PI / 180 * 32.0;
