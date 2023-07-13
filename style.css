@@ -326,7 +326,7 @@ main {
     width: 100%;
     max-width: 600px;
     overflow-x: scroll;
-    margin-top: 2em;
+    margin-top: 1em;
     scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
@@ -350,8 +350,12 @@ main {
     scroll-snap-align: start;
 }
 
+p.info-details-time {
+    font-size: 1em;
+}
+
 .info-details-section h2 {
-    margin-bottom: 30px;
+    margin-bottom: 1em;
 }
 
 .info-table-titles {
