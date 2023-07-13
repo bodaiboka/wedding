@@ -63,8 +63,6 @@ renderer.setPixelRatio(window.devicePixelRatio);
 camera.position.y = 0;
 camera.position.z = 16;
 
-
-
 const sc = 0.4; // scale
 const scw = 0.13;
 let mixer;
@@ -115,15 +113,6 @@ loader2.load(
         model.translateY(-6);
         model.rotateY(32)
         window.addEventListener('deviceorientation', function(event) {
-         
-            let alpha = event.alpha; // Z-axis rotation in degrees
-            //let beta = event.beta; // X-axis rotation in degrees
-            
-            let alphaRad = alpha * (Math.PI / 180);
-            //let betaRad = beta * (Math.PI / 180);
-    
-            // Apply rotation to the camera
-            //camera.rotation.set(betaRad, alphaRad, -gammaRad);
             let beta = (event.beta >= 45 ? 45 : (event.beta <= 0 ? 0 : event.beta)) / 2.0; 
             let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= -45 ? -45 : event.gamma)); // Y-axis rotation in degrees
             let gammaRad = gamma * (Math.PI / 180);
@@ -134,8 +123,6 @@ loader2.load(
         }, false);
 	}
 );
-
-
 
 function animate() {
     TWEEN.update();
@@ -148,9 +135,6 @@ function animate() {
 }
 
 animate();
-
-
-
 
 detailsBtn.addEventListener('click', () => {
     if (!isInfoOpen) {
@@ -179,5 +163,4 @@ detailsBtn.addEventListener('click', () => {
     }
     
 })
-
 
