@@ -129,7 +129,7 @@ loader2.load(
             let gammaRad = gamma * (Math.PI / 180);
             let betaRad = beta * (Math.PI / 180);
             //gammaRad += Math.PI / 180 * 32.0;
-            camera.rotation.set(betaRad/40, gammaRad/40, 0);
+            churchModel.rotation.set(betaRad/40, gammaRad/40, 0);
         }, false);
 	}
 );
