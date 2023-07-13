@@ -110,7 +110,7 @@ loader2.load(
 		const grass = scene.getObjectByName("GRASS001");
 		console.log(grass);
 		model.scale.set(scw, scw, scw);
-        model.translateY(-6);
+        model.translateY(-6.4);
         model.rotateY(32)
         window.addEventListener('deviceorientation', function(event) {
             let beta = (event.beta >= 45 ? 45 : (event.beta <= 0 ? 0 : event.beta)) / 2.0; 
