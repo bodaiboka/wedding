@@ -10,12 +10,12 @@
 
 @font-face {
     font-family: hellohoney;
-    src: url('fonts/hello_honey/hello\ honey.otf');
+    src: url('public/fonts/hello_honey/hello\ honey.otf');
 }
 
 @font-face {
     font-family: wedding-icons;
-    src: url('fonts/WeddingIcons.ttf');
+    src: url('public/fonts/WeddingIcons.ttf');
 }
 
 * {
