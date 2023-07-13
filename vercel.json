@@ -1,12 +1,16 @@
 {
     "routes": [
       {
-        "src": "fonts/(.*)",
-        "dest": "fonts/$1"
+        "src": "/fonts/(.*)",
+        "dest": "/fonts/$1"
       },
       {
-        "src": "models/(.*)",
-        "dest": "models/$1"
+        "src": "/models/(.*)",
+        "dest": "/models/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/$1"
       }
     ]
   }
