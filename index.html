@@ -20,21 +20,22 @@
     <div class="welcome" >
         <div class="welcome-icon">É</div>
 
-        <p class="welcome-text">Kedves szerettünk! Örömmel értesítünk, hogy</p>
+        <p data-translate-key="intro_1" class="welcome-text" id="guest-names">Kedves szerettünk!</p>
+        <p data-translate-key="intro_1_1" class="welcome-text">Örömmel értesítünk, hogy</p>
 
         <div class="welcome-title"><h1>ichárnin</h1></div>
 
-        <p>örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja</p>
+        <p data-translate-key="intro_2" class="welcome-text">örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja</p>
 
         <div class="date">
-            <div class="month"><p>július</p></div>
-            <div class="day"><p>28</p><p>péntek</p></div>
+            <div data-translate-key="july" class="month"><p>július</p></div>
+            <div data-translate-key="friday" class="day"><p>28</p><p>péntek</p></div>
             <div class="year"><p>2023</p></div>
         </div>
 
         <div class="info">
             <div class="details">
-                <p>részletek</p>
+                <p data-translate-key="details">részletek</p>
                 <i class="bi bi-chevron-double-down"></i>
                 <!-- <i class="bi bi-chevron-double-up"></i> -->
                 
@@ -52,42 +53,126 @@
 
     <div class="info-details-container start">
         <div class="info-details-section">
-            <h2>Templomi esküvő</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+            <h2 data-translate-key="church_title">Templomi esküvő</h2>
+            <p data-translate-key="church_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
         </div>
         <div class="info-details-section">
-            <h2>Polgári esküvő</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+            <h2 data-translate-key="civil_title">Polgári esküvő</h2>
+            <p data-translate-key="civil_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
         </div>
         <div class="info-details-section">
-            <h2>Vacsora</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+            <h2 data-translate-key="dinner_title">Vacsora</h2>
+            <p data-translate-key="dinner_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
         </div>
         <div class="info-details-section">
-            <h2>Torta</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+            <h2 data-translate-key="cake_title">Torta</h2>
+            <p data-translate-key="cake_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
         </div>
         <div class="info-details-section">
-            <h2>Információ</h2>
+            <h2 data-translate-key="info_title">Információ</h2>
             <form>
                 <div class="info-table">
                     <div class="info-table-titles">
-                        <div class="name">Name</div>
-                        <div class="attend">Attending</div>
-                        <div class="vegetarian">Vegetarian</div>
-                        <div class="age">Age under 3</div>
+                        <div data-translate-key="info_name" class="name">Name</div>
+                        <div data-translate-key="info_attending" class="attend">Attending</div>
+                        <div data-translate-key="info_vegan" class="vegetarian">Vegetarian</div>
+                        <div data-translate-key="info_age3" class="age">Age under 3</div>
                     </div>
                 </div>
-                <button type="button">Add guest</button>
-                <button class="info-send-button" type="button">Send answer</button>
+                <button data-translate-key="info_add_guest" type="button">Add guest</button>
+                <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
             </form>
         </div>
     </div>
 
+    
     <script type="module" src="graphics.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            let strings = {
+
+                "hu": {
+                    intro_1: "Kedves ",
+                    intro_1_1: "Örömmel értesítünk, hogy",
+                    intro_2: "örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja",
+                    july: "július",
+                    friday: "péntek",
+                    details: "Részletek",
+                    church_title: "Templomi Esküvő",
+                    church_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    civil_title: "Polgári Esküvő",
+                    civil_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    dinner_title: "Vacsora",
+                    dinner_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    cake_title: "Torta",
+                    cake_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    info_title: "Visszajelzés",
+                    info_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    info_name: "Név",
+                    info_attending: "Részt vesz",
+                    info_vegan: "Vegán",
+                    info_age3: "3 év alatt",
+                    info_note: "Megjegyzés",
+                    info_add_guest: "Kísérő hozzáadása",
+                    info_submit: "Válasz elküldése"
+                },
+
+                "en": {
+                    intro_1: "Dear ",
+                    intro_1_1: "We are delighted to inform you that",
+                    intro_2: "we are pledging eternal fidelity to each other, and therefore we invite you to our wedding, which will be held on",
+                    july: "July",
+                    friday: "Friday",
+                    details: "Details",
+                    church_title: "Church Ceremony",
+                    church_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    civil_title: "Civil Ceremony",
+                    civil_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    dinner_title: "Dinner",
+                    dinner_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    cake_title: "Cake",
+                    cake_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    info_title: "Please respond",
+                    info_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    info_name: "Name",
+                    info_attending: "Will attend",
+                    info_vegan: "Vegan",
+                    info_age3: "under 3y old",
+                    info_note: "Note",
+                    info_add_guest: "Add a companion",
+                    info_submit: "Submit a reply"
+                },
+
+                "ge": {
+                    intro_1: "Dear ",
+                    intro_1_1: "We are delighted to inform you that",
+                    intro_2: "örök hűséget fogadunk egymásnak, ezért meghívunk titeket esküvőnkre, melynek időpontja",
+                    july: "július",
+                    friday: "péntek",
+                    details: "részletek",
+                    church_title: "Templomi Esküvő",
+                    church_description: "",
+                    civil_title: "Polgári Esküvő",
+                    civil_description: "",
+                    dinner_title: "Vacsora",
+                    dinner_description: "",
+                    cake_title: "Torta",
+                    cake_description: "",
+                    info_title: "Visszajelzés",
+                    info_description: "",
+                    info_name: "Név",
+                    info_attending: "Részt vesz",
+                    info_vegan: "Vegán",
+                    info_age3: "3 év alatt",
+                    info_note: "Megjegyzés",
+                    info_add_guest: "Kísérő hozzáadása",
+                    info_submit: "Válasz elküldése"
+                }
+
+            }
+
             let infoTimeOut;
             isInfoOpen = false;
             $welcome = $('.welcome');
@@ -189,6 +274,17 @@
             });
 
             let group = getQueryParam('g');
+
+            $.get(`https://api.nino-ricsi.wedding:3000/groups/${group}`, function(data) {
+                let lang = data['lang'];
+                // Translate the content
+                $("[data-translate-key]").each(function() {
+                    var key = $(this).data("translate-key");
+                    $(this).text(strings[lang][key]);
+                });
+                $('#guest-names').append(`${data['address']},`);
+            })
+
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${group}/guests`, function(data) {
                 data.forEach(element => {
