@@ -70,7 +70,7 @@ const clock = new THREE.Clock();
 const loader = new GLTFLoader();
 const loader2 = new GLTFLoader();
 loader.load(
-	'public/models/dove.glb',
+	'models/dove.glb',
 
 	// called when the resource is loaded
 	function ( gltf ) {
@@ -100,7 +100,7 @@ loader.load(
 );
 
 loader2.load(
-	'public/models/churchbake.glb',
+	'models/churchbake.glb',
 	function ( gltf ) {
 		const model = gltf.scene;
 		console.log(model);
