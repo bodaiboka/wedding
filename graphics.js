@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 var myCanvas = document.getElementById("wedding-canvas");
 let siteWrapper = document.getElementById("site-wrapper");
 let detailsBtn = document.querySelector('.details');
+let churchModel = null;
 
 var resizeObserver = new ResizeObserver(entry => {
     console.log("canvas change");
@@ -62,20 +63,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 camera.position.y = 0;
 camera.position.z = 16;
 
-window.addEventListener('deviceorientation', function(event) {
-    let alpha = event.alpha; // Z-axis rotation in degrees
-    let beta = event.beta; // X-axis rotation in degrees
-    let gamma = event.gamma; // Y-axis rotation in degrees
 
-    // Convert degrees to radians
-    let alphaRad = alpha * (Math.PI / 180);
-    let betaRad = beta * (Math.PI / 180);
-    let gammaRad = gamma * (Math.PI / 180);
-
-    // Apply rotation to the camera
-    //camera.rotation.set(betaRad, alphaRad, -gammaRad);
-    camera.rotateY(alphaRad/6);
-}, true);
 
 const sc = 0.4; // scale
 const scw = 0.13;
@@ -118,6 +106,7 @@ loader2.load(
 	'models/churchbake.glb',
 	function ( gltf ) {
 		const model = gltf.scene;
+        churchModel = model;
 		console.log(model);
 		scene.add(model);
 		const grass = scene.getObjectByName("GRASS001");
@@ -125,8 +114,24 @@ loader2.load(
 		model.scale.set(scw, scw, scw);
         model.translateY(-6);
         model.rotateY(32)
+        window.addEventListener('deviceorientation', function(event) {
+            let alpha = event.alpha; // Z-axis rotation in degrees
+            let beta = event.beta; // X-axis rotation in degrees
+            let gamma = event.gamma; // Y-axis rotation in degrees
+        
+            // Convert degrees to radians
+            let alphaRad = alpha * (Math.PI / 180);
+            let betaRad = beta * (Math.PI / 180);
+            let gammaRad = gamma * (Math.PI / 180);
+        
+            // Apply rotation to the camera
+            //camera.rotation.set(betaRad, alphaRad, -gammaRad);
+            churchModel.rotateY(gammaRad);
+        }, true);
 	}
 );
+
+
 
 function animate() {
     TWEEN.update();
