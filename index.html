@@ -190,7 +190,7 @@
 
             let group = getQueryParam('g');
 
-            $.get(`http://108.61.178.253:3000/groups/${group}/guests`, function(data) {
+            $.get(`https://api.nino-ricsi.wedding:3000/groups/${group}/guests`, function(data) {
                 data.forEach(element => {
                     $infoTable.append(
                         `<div class="info-table-values" data-id="${element._id}">
@@ -216,7 +216,7 @@
                     })
                 });
                 $.ajax({
-                    url: "http://108.61.178.253:3000/guests",
+                    url: "https://api.nino-ricsi.wedding:3000/guests",
                     type: 'PUT',
                     contentType: 'application/json',
                     data: JSON.stringify(data),
