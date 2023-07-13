@@ -126,7 +126,7 @@ loader2.load(
             // Apply rotation to the camera
             //camera.rotation.set(betaRad, alphaRad, -gammaRad);
             churchModel.rotateY(gammaRad/60.0);
-        }, false);
+        }, true);
 	}
 );
 
