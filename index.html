@@ -280,7 +280,7 @@
                 // Translate the content
                 $("[data-translate-key]").each(function() {
                     var key = $(this).data("translate-key");
-                    $(this).text(strings[lang][key]);
+                    $(this).html(strings[lang][key]);
                 });
                 $('#guest-names').append(`${data['address']},`);
             })
