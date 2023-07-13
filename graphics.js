@@ -130,7 +130,7 @@ loader2.load(
             if (gammaRad >= Math.PI/3) gammaRad = Math.PI/3;
             if (gammaRad <= - Math.PI/3) gammaRad = - Math.PI/3;
             //gammaRad += Math.PI / 180 * 32.0;
-            camera.rotation.set(0, gammaRad/100, 0);
+            camera.rotation.set(0, gammaRad/40, 0);
         }, false);
 	}
 );
