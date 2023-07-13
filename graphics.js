@@ -73,7 +73,8 @@ window.addEventListener('deviceorientation', function(event) {
     let gammaRad = gamma * (Math.PI / 180);
 
     // Apply rotation to the camera
-    camera.rotation.set(betaRad, alphaRad, -gammaRad);
+    //camera.rotation.set(betaRad, alphaRad, -gammaRad);
+    camera.rotateX(betaRad);
 }, true);
 
 const sc = 0.4; // scale
