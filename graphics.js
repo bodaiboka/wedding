@@ -125,11 +125,11 @@ loader2.load(
             // Apply rotation to the camera
             //camera.rotation.set(betaRad, alphaRad, -gammaRad);
             let beta = (event.beta >= 45 ? 45 : (event.beta <= -45 ? -45 : event.beta)); 
-            let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= -45 ? -45 : event.gamma)) / 10; // Y-axis rotation in degrees
+            let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= 0 ? 0 : event.gamma)) / 10; // Y-axis rotation in degrees
             let gammaRad = gamma * (Math.PI / 180);
             let betaRad = beta * (Math.PI / 180);
             gammaRad += Math.PI / 180 * 32.0;
-            betaRad -= Math.PI / 180 * 16.0;
+            betaRad = Math.PI / 180 * 16.0;
             churchModel.rotation.set(betaRad, gammaRad, 0);
         }, false);
 	}
