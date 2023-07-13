@@ -115,20 +115,18 @@ loader2.load(
         model.translateY(-6);
         model.rotateY(32)
         window.addEventListener('deviceorientation', function(event) {
+            /*
             let alpha = event.alpha; // Z-axis rotation in degrees
             let beta = event.beta; // X-axis rotation in degrees
             let gamma = event.gamma; // Y-axis rotation in degrees
-        
-            // Convert degrees to radians
             let alphaRad = alpha * (Math.PI / 180);
             let betaRad = beta * (Math.PI / 180);
             let gammaRad = gamma * (Math.PI / 180);
-        
+        */
             // Apply rotation to the camera
             //camera.rotation.set(betaRad, alphaRad, -gammaRad);
-            churchModel.rotateY(gammaRad/50.0);
-            churchModel.rotateX(betaRad/50.0);
-        }, true);
+            churchModel.rotateY(gammaRad/60.0);
+        }, false);
 	}
 );
 
