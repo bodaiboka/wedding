@@ -354,6 +354,11 @@ p.info-details-time {
     font-size: 1em;
 }
 
+p.info-details-note {
+    margin-top: 1em;
+    font-size: 0.8em;
+}
+
 .info-details-section h2 {
     margin-bottom: 1em;
 }
