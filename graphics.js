@@ -127,7 +127,7 @@ loader2.load(
             //camera.rotation.set(betaRad, alphaRad, -gammaRad);
             let gamma = event.gamma; // Y-axis rotation in degrees
             let gammaRad = gamma * (Math.PI / 180);
-            churchModel.rotateY(gammaRad/60.0);
+            churchModel.rotation.set(0, gammaRad, 0);
         }, false);
 	}
 );
