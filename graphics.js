@@ -74,7 +74,7 @@ window.addEventListener('deviceorientation', function(event) {
 
     // Apply rotation to the camera
     //camera.rotation.set(betaRad, alphaRad, -gammaRad);
-    camera.rotateX(betaRad);
+    camera.rotateY(alphaRad/6);
 }, true);
 
 const sc = 0.4; // scale
