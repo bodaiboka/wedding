@@ -118,15 +118,17 @@ loader2.load(
             /*
             let alpha = event.alpha; // Z-axis rotation in degrees
             let beta = event.beta; // X-axis rotation in degrees
-            let gamma = event.gamma; // Y-axis rotation in degrees
+            
             let alphaRad = alpha * (Math.PI / 180);
             let betaRad = beta * (Math.PI / 180);
-            let gammaRad = gamma * (Math.PI / 180);
+            
         */
             // Apply rotation to the camera
             //camera.rotation.set(betaRad, alphaRad, -gammaRad);
+            let gamma = event.gamma; // Y-axis rotation in degrees
+            let gammaRad = gamma * (Math.PI / 180);
             churchModel.rotateY(gammaRad/60.0);
-        }, true);
+        }, false);
 	}
 );
 
