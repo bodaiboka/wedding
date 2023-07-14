@@ -88,9 +88,9 @@
                         <div data-translate-key="info_age3" class="age">Age under 3</div>
                     </div>
                 </div>
-                <form>
+                <form action="#">
                     <input type="text" id="myInput" placeholder="Name">
-                    <button type="submit" class=".info-add-guest-button">Add a companion</button>
+                    <button type="button" class="info-add-guest-button">Add a companion</button>
                 </form>
                 <button data-translate-key="info_add_guest" type="button" class="info-add-guest-button">Add guest</button>
                 <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
@@ -312,7 +312,7 @@
                 });
             })
 
-            $('.info-add-guest-button').on('submit', (event) => {
+            $('.info-add-guest-button').on('click', (event) => {
                 event.preventDefault();
                 var inputValue = $('#myInput').val();
                 console.log(inputValue);
