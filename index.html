@@ -318,7 +318,7 @@
                 var inputValue = $('#myInput').val();
                 console.log(inputValue);
                 $infoTable.append(
-                `<div class="info-table-values">
+                `<div class="info-table-values" data-id="">
                             <div class="name">${inputValue}</div>
                             <div><input class="attending" type="checkbox" 'checked'}></div>
                             <div><input class="vegetarian" type="checkbox"}></div>
@@ -332,7 +332,8 @@
             $infoSendButton.on("click", (event) => {
                 data.length = 0;
                 $(".info-table-values").each(function() {
-                    if ($(this).data('id') != null) {
+                    if ($(this).data('id') != "") {
+                        console.log("van data");
                         data.push({
                             _id: $(this).data('id'),
                             attending: $(this).find('.attending').is(':checked'),
@@ -340,6 +341,7 @@
                             age3: $(this).find('.age3').is(':checked')
                         })
                     } else {
+                        console.log("nincs data");
                         data.push({
                             name: $(this).find('.name'),
                             group: groupId,
