@@ -90,7 +90,7 @@
                 </div>
                 <form>
                     <input type="text" id="myInput" placeholder="Name">
-                    <button type="submit" id="info-add-guest-button">Add a companion</button>
+                    <button type="submit" class=".info-add-guest-button">Add a companion</button>
                 </form>
                 <button data-translate-key="info_add_guest" type="button" class="info-add-guest-button">Add guest</button>
                 <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
@@ -312,9 +312,10 @@
                 });
             })
 
-            $('#info-add-guest-button').on('submit', (event) => {
+            $('.info-add-guest-button').on('submit', (event) => {
                 event.preventDefault();
                 var inputValue = $('#myInput').val();
+                console.log(inputValue);
                 $infoTable.append(
                 `<div class="info-table-values">
                             <div class="name">${inputValue}</div>
