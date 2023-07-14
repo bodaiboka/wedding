@@ -88,6 +88,10 @@
                         <div data-translate-key="info_age3" class="age">Age under 3</div>
                     </div>
                 </div>
+                <form>
+                    <input type="text" id="myInput" placeholder="Name">
+                    <button type="submit" id="info-add-guest-button">Add a companion</button>
+                </form>
                 <button data-translate-key="info_add_guest" type="button" class="info-add-guest-button">Add guest</button>
                 <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
             </form>
@@ -306,20 +310,19 @@
                         </div>`
                     )
                 });
-                $infoTable.append(
-                    `<input type="text" id="myInput" placeholder="Name">
-                    <button id="info-add-guest-button">Add a companion</button>`
-                )
             })
 
-            $('info-add-guest-button').on("click", (event) => {
+            $('info-add-guest-button').on('submit', (event) => {
+                event.preventDefault();
                 var inputValue = $('#myInput').val();
-                `<div class="info-table-values" data-id="${element._id}">
+                $infoTable.append(
+                `<div class="info-table-values">
                             <div class="name">${inputValue}</div>
                             <div><input class="attending" type="checkbox" 'checked'}></div>
                             <div><input class="vegetarian" type="checkbox"}></div>
                             <div><input class="age3" type="checkbox"}></div>
                 </div>`
+                )
             })
 
             let data = [];
