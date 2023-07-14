@@ -301,7 +301,7 @@
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}/guests`, function(data) {
                 data.forEach(element => {
-                    console.log(element.id);
+                    console.log(element_.id);
                     $infoTable.append(
                         `<div class="info-table-values" data-id="${element._id}">
                             <div class="name">${element.name}</div>
