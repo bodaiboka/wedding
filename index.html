@@ -67,8 +67,11 @@
             <p class="info-details-note" data-translate-key="civil_description">A szertartás előtt frissítő falatokkal és italokkal várunk benneteket a helyszínen.</p>
         </div>
         <div class="info-details-section">
+            <p class="info-details-time">19:00</p>
             <h2 data-translate-key="dinner_title">Vacsora</h2>
-            <p data-translate-key="dinner_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+            <p>Molnár Csárda Rendezvénysátor</p>
+            <p>Miskolc, Vadas Jenő u. 1, 3517</p>
+            <p data-translate-key="dinner_description"></p>
         </div>
         <div class="info-details-section">
             <h2 data-translate-key="cake_title">Torta</h2>
@@ -85,7 +88,7 @@
                         <div data-translate-key="info_age3" class="age">Age under 3</div>
                     </div>
                 </div>
-                <button data-translate-key="info_add_guest" type="button">Add guest</button>
+                <button data-translate-key="info_add_guest" type="button" class="info-add-guest-button">Add guest</button>
                 <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
             </form>
         </div>
@@ -303,6 +306,20 @@
                         </div>`
                     )
                 });
+                $infoTable.append(
+                    `<input type="text" id="myInput" placeholder="Name">
+                    <button id="info-add-guest-button">Add a companion</button>`
+                )
+            })
+
+            $('info-add-guest-button').on("click", (event) => {
+                var inputValue = $('#myInput').val();
+                `<div class="info-table-values" data-id="${element._id}">
+                            <div class="name">${inputValue}</div>
+                            <div><input class="attending" type="checkbox" 'checked'}></div>
+                            <div><input class="vegetarian" type="checkbox"}></div>
+                            <div><input class="age3" type="checkbox"}></div>
+                </div>`
             })
 
             let data = [];
