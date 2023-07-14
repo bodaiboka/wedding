@@ -343,7 +343,7 @@
                     } else {
                         console.log("nincs data");
                         data.push({
-                            name: $(this).find('.name'),
+                            name: $(this).find('.name').text(),
                             group: groupId,
                             attending: $(this).find('.attending').is(':checked'),
                             vegetarian: $(this).find('.vegetarian').is(':checked'),
