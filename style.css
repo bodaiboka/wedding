@@ -369,7 +369,9 @@ p.info-details-note {
 }
 
 @media screen and (min-width: 550px) {
-    .info-table-titles {}
+    .info-table-titles {
+        font-size: 1em;
+    }
 }
 
 .info-table div {

@@ -92,7 +92,6 @@
                     <input type="text" id="myInput" placeholder="Name">
                     <button type="button" class="info-add-guest-button">Add a companion</button>
                 </form>
-                <button data-translate-key="info_add_guest" type="button" class="info-add-guest-button">Add guest</button>
                 <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
             </form>
         </div>
@@ -295,6 +294,9 @@
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`, function(data) {
                 let lang = data['lang'];
+                if (lang != 'hu' && lang != 'en' && lang != 'ge') {
+                    lang = 'hu';
+                }
                 // Translate the content
                 $("[data-translate-key]").each(function() {
                     var key = $(this).data("translate-key");
