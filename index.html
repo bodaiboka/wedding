@@ -287,6 +287,11 @@
             });
 
             let groupId = getQueryParam('g');
+            if (groupId == null) {
+                groupId = localStorage.getItem('groupId');
+            } else {
+                localStorage.setItem('groupId', groupId);
+            }
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`, function(data) {
                 let lang = data['lang'];
