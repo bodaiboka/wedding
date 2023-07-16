@@ -351,6 +351,10 @@ main {
     scroll-snap-align: start;
 }
 
+.info-details-respond-p {
+    padding-bottom: 20px;
+}
+
 p.info-details-time {
     font-size: 1em;
 }
@@ -393,6 +397,7 @@ p.info-details-note {
     align-items: center;
 
 }
+
 
 .info-table .name {
     padding: 0;
@@ -448,7 +453,7 @@ p.info-details-note {
 
 .info-add-guest-button {
     font-family: 'Cinzel', serif;
-    flex-basis: 50%;
+    flex-basis: 80%;
     background-color: var(--col-background-2);
     color: var(--col-white);
     border-radius: 20px;
@@ -460,7 +465,7 @@ p.info-details-note {
 
 #myInput {
     font-family: 'Cinzel', serif;
-    flex-basis: 50%;
+    flex-basis: 30%;
     background-color: var(--col-background-3);
     color: var(--col-white);
     border-radius: 20px;
