@@ -56,16 +56,16 @@
             <p class="info-details-time">15:00</p>
             <h2 data-translate-key="church_title">Templomi esküvő</h2>
             <a href="https://goo.gl/maps/Sey7AfuV1kieLpu86">
-            <p>Mindszenti templom</p>
-            <p>Miskolc, Mindszent tér 2-4, 3530 <i class="bi bi-geo-alt-fill"></i></p></a>
+            <p class="google-maps">Mindszenti templom</p>
+            <p class="google-maps">Miskolc, Mindszent tér 2-4, 3530 <i class="bi bi-geo-alt-fill"></i></p></a>
             <p class="info-details-note" data-translate-key="church_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
         </div>
         <div class="info-details-section">
             <p class="info-details-time">17:00</p>
             <h2 data-translate-key="civil_title">Polgári esküvő</h2>
             <a href="https://goo.gl/maps/j8kCfwNF5rxgNoTbA">
-            <p>Molnár Csárda Rendezvénysátor</p>
-            <p>Miskolc, Vadas Jenő u. 1, 3517 <i class="bi bi-geo-alt-fill"></i></p></a>
+            <p class="google-maps">Molnár Csárda Rendezvénysátor</p>
+            <p class="google-maps">Miskolc, Vadas Jenő u. 1, 3517 <i class="bi bi-geo-alt-fill"></i></p></a>
             <p class="info-details-note" data-translate-key="civil_description">A szertartás előtt frissítő falatokkal és italokkal várunk benneteket a helyszínen.</p>
         </div>
         <div class="info-details-section">
@@ -323,6 +323,7 @@
                                         console.log("one tim help");
                                         showToast(strings[lang]['tipp_google_maps'], null, null)
                                         oneTimeHelp = true;
+                                        $('.google-maps').addClass('shake');
                                     }, 4000)
                                 }
                             }, 500)
