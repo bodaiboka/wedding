@@ -63,8 +63,9 @@
         <div class="info-details-section">
             <p class="info-details-time">17:00</p>
             <h2 data-translate-key="civil_title">Polgári esküvő</h2>
+            <a href="https://goo.gl/maps/j8kCfwNF5rxgNoTbA">
             <p>Molnár Csárda Rendezvénysátor</p>
-            <p>Miskolc, Vadas Jenő u. 1, 3517</p>
+            <p>Miskolc, Vadas Jenő u. 1, 3517 <i class="bi bi-geo-alt-fill"></i></p></a>
             <p class="info-details-note" data-translate-key="civil_description">A szertartás előtt frissítő falatokkal és italokkal várunk benneteket a helyszínen.</p>
         </div>
         <div class="info-details-section">
@@ -161,7 +162,8 @@
                     info_submit: "Válasz elküldése",
                     popup_companion: "Először add meg a kísérő nevét a mezőben.",
                     popup_respond_success: "Köszönjük, megkaptuk a válaszod.",
-                    tipp_google_maps: "Kattints a címre, hogy ha szeretnéd megtekinteni google maps-en is."
+                    tipp_google_maps: "Kattints a címre, hogy ha szeretnéd megtekinteni google maps-en is.",
+                    tipp_respond: "Köszönjük, hogy már válaszoltál. Július 23-ig még módosíthatod válaszodat, csak küldd el újra."
                 },
 
                 "en": {
@@ -191,7 +193,8 @@
                     info_submit: "Submit a reply",
                     popup_companion: "First type your companion's name into the input field.",
                     popup_respond_success: "Thank you, we have received your response.",
-                    tipp_google_maps: "Click on the address if you would like to view it on Google Maps as well."
+                    tipp_google_maps: "Click on the address if you would like to view it on Google Maps as well.",
+                    tipp_respond: "Thank you for your response. You can modify your answer until July 23, just send it again."
                 },
 
                 "ge": {
@@ -221,8 +224,8 @@
                     info_submit: "Válasz elküldése",
                     popup_companion: "Először add meg a kísérő nevét a mezőben.",
                     popup_respond_success: "Köszönjük, megkaptuk a válaszod.",
-                    tipp_google_maps: "Click on the address if you would like to view it on Google Maps as well."
-
+                    tipp_google_maps: "Click on the address if you would like to view it on Google Maps as well.",
+                    tipp_respond: "Thank you for your response. You can modify your answer until July 23, just send it again."
                 }
 
             }
@@ -345,6 +348,7 @@
             }
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`, function(data) {
+                console.log(data);
                 lang = data['lang'];
                 if (lang != 'hu' && lang != 'en' && lang != 'ge') {
                     lang = 'hu';
@@ -356,6 +360,10 @@
                 });
                 $('#myInput').attr('placeholder', strings[lang]['input_placeholder']);
                 $('#guest-names').append(`${data['address']},`);
+                if (data['respond'] == true) {
+                    console.log("volt respond");
+                    $('.info-details-respond-p').text(strings[lang]['tipp_respond']);
+                }
             })
 
 
@@ -398,6 +406,7 @@
                     data: JSON.stringify({respond: true}),
                     success: function(data) {
                         showToast("Köszönjük, megkaptuk a válaszod.");
+                        $('.info-details-respond-p').text(strings[lang]['tipp_respond']);
                     },
                     error: function(error) {
                         console.log('Error:', error);
