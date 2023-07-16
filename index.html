@@ -34,7 +34,7 @@
         </div>
 
         <div class="info">
-            <div class="details">
+            <div class="details shake-rep">
                 <p data-translate-key="details">részletek</p>
                 <i class="bi bi-chevron-double-down"></i>
                 <!-- <i class="bi bi-chevron-double-up"></i> -->
@@ -287,9 +287,11 @@
                             toggleInfo();
                             $('.welcome > p').toggleClass('transparent');
                             $('.welcome .date').toggleClass('transparent');
+                            $detailsButton.addClass('shake-rep')
                         });
                     })
                 } else {
+                    $detailsButton.removeClass('shake-rep')
                     $('.info-bar').slideToggle(350, () => {
                             toggleInfo();
                             $('.welcome > p').toggleClass('transparent');

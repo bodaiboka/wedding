@@ -536,7 +536,22 @@ input[type='checkbox']:checked {
     80% { transform: translateX(10px); }
     100% { transform: translateX(0); }
   }
+
+  @keyframes shake-rep {
+    0% { transform: translateX(0); }
+    75% { transform: translateX(0); }
+    80% { transform: translateX(-10px); }
+    85% { transform: translateX(10px); }
+    90% { transform: translateX(-10px); }
+    95% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
   
   .shake {
     animation: shake 1s ease-in-out;
+  }
+
+  .shake-rep {
+    animation: shake-rep 4s ease-in-out;
+    animation-iteration-count: infinite;
   }
