@@ -128,7 +128,7 @@
                     }, 4000);
                 }  
             }
-
+            let lang  = 'hu';
             let strings = {
 
                 "hu": {
@@ -155,7 +155,9 @@
                     info_note: "Megjegyzés",
                     input_placeholder: "Kísérő neve",
                     info_add_guest: "Kísérő hozzáadása",
-                    info_submit: "Válasz elküldése"
+                    info_submit: "Válasz elküldése",
+                    popup_companion: "Először add meg a kísérő nevét a mezőben.",
+                    popup_respond_success: "Köszönjük, megkaptuk a válaszod."
                 },
 
                 "en": {
@@ -182,7 +184,9 @@
                     info_note: "Note",
                     input_placeholder: "Name",
                     info_add_guest: "Add a companion",
-                    info_submit: "Submit a reply"
+                    info_submit: "Submit a reply",
+                    popup_companion: "First type your companion's name into the input field.",
+                    popup_respond_success: "Thank you, we have received your response."
                 },
 
                 "ge": {
@@ -209,7 +213,9 @@
                     info_note: "Megjegyzés",
                     input_placeholder: "Name",
                     info_add_guest: "Kísérő hozzáadása",
-                    info_submit: "Válasz elküldése"
+                    info_submit: "Válasz elküldése",
+                    popup_companion: "Először add meg a kísérő nevét a mezőben.",
+                    popup_respond_success: "Köszönjük, megkaptuk a válaszod."
                 }
 
             }
@@ -325,7 +331,7 @@
             }
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`, function(data) {
-                let lang = data['lang'];
+                lang = data['lang'];
                 if (lang != 'hu' && lang != 'en' && lang != 'ge') {
                     lang = 'hu';
                 }
@@ -357,7 +363,7 @@
                 event.preventDefault();
                 var inputValue = $('#myInput').val();
                 if (inputValue == "" || inputValue == null) {
-                    showToast("First type the guest's name into the input field.", () => $('#myInput').addClass('shake'), () => $('#myInput').removeClass('shake'))
+                    showToast(strings[lang]['popup_companion'], () => $('#myInput').addClass('shake'), () => $('#myInput').removeClass('shake'))
                 } else {
                     $infoTableData.append(
                     `<div class="info-table-values" data-id="">
