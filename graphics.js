@@ -122,6 +122,7 @@ loader2.load(
 		model.scale.set(scw, scw, scw);
         model.translateY(-6.4);
         model.rotateY(32)
+        /*
         window.addEventListener('deviceorientation', function(event) {
             let beta = (event.beta >= 45 ? 45 : (event.beta <= 0 ? 0 : event.beta)) / 2.0; 
             let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= -45 ? -45 : event.gamma)); // Y-axis rotation in degrees
@@ -130,7 +131,7 @@ loader2.load(
             gammaRad += Math.PI / 180 * 32.0;
             betaRad -= Math.PI / 180 * 16.0;
             churchModel.rotation.set(betaRad, gammaRad, 0);
-        }, false);
+        }, false);*/
 	}
 );
 
@@ -145,6 +146,7 @@ loader3.load(
         model.translateY(-6.4);
         model.translateX(10.4);
         model.rotateY(32)
+        /*
         window.addEventListener('deviceorientation', function(event) {
             let beta = (event.beta >= 45 ? 45 : (event.beta <= 0 ? 0 : event.beta)) / 2.0; 
             let gamma = (event.gamma >= 45 ? 45 : (event.gamma <= -45 ? -45 : event.gamma)); // Y-axis rotation in degrees
@@ -153,7 +155,7 @@ loader3.load(
             gammaRad += Math.PI / 180 * 32.0;
             betaRad -= Math.PI / 180 * 16.0;
             civilModel.rotation.set(betaRad, gammaRad, 0);
-        }, false);
+        }, false);*/
 	}
 );
 
