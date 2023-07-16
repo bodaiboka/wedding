@@ -105,6 +105,7 @@ loader.load(
             /* action.zeroSlopeAtStart = false;
             action.zeroSlopeAtEnd = false; */
             action.setDuration(16);
+            action.time = 5;
             action.play();
         });
 	}, undefined, function(error) {
