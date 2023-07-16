@@ -87,21 +87,47 @@
                         <div data-translate-key="info_vegan" class="vegetarian">Vegetarian</div>
                         <div data-translate-key="info_age3" class="age">Age under 3</div>
                     </div>
+                    <div class="info-table-data">
+
+                    </div>
                 </div>
-                <form action="#">
-                    <input type="text" id="myInput" placeholder="Name">
-                    <button type="button" class="info-add-guest-button">Add a companion</button>
+
+                <form  action="#">
+                    <div class="info-form">
+                        <input type="text" id="myInput" placeholder="Name">
+                        <button type="button" data-translate-key="info_add_guest" class="info-add-guest-button"></button>
+                    </div>                    
                 </form>
                 <button data-translate-key="info_submit" class="info-send-button" type="button">Send answer</button>
             </form>
         </div>
     </div>
 
+    <div id="popup" class="popup">
+        <span id="popup-message"></span>
+      </div>
+      
     
     <script type="module" src="graphics.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            function showToast(message, pre, post) {
+                var popup = $('#popup');
+                var popupMessage = $('#popup-message');
+                
+                if (!popup.is(":visible")) {
+                    if (pre != null) pre()
+                    popupMessage.text(message);
+                    popup.show(200);
+                    
+                    setTimeout(function() {
+                        popup.hide(200)
+                        if (post != null) post()
+                    }, 4000);
+                }  
+            }
 
             let strings = {
 
@@ -198,6 +224,7 @@
             $infoDetailsContainer = $('.info-details-container');
             $welcomeTitle = $('.welcome-title');
             $infoTable = $(".info-table");
+            $infoTableData = $(".info-table-data");
             $infoSendButton = $(".info-send-button");
             let welcomeOfset;
             let welcomeTitleOffset = $('.welcome .info').offset().top - $welcomeTitle.outerHeight(true);
@@ -309,7 +336,7 @@
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}/guests`, function(data) {
                 data.forEach(element => {
                     console.log(element._id);
-                    $infoTable.append(
+                    $infoTableData.append(
                         `<div class="info-table-values" data-id="${element._id}">
                             <div class="name">${element.name}</div>
                             <div><input class="attending" type="checkbox" ${element.attending?'checked':''}></div>
@@ -323,16 +350,34 @@
             $('.info-add-guest-button').on('click', (event) => {
                 event.preventDefault();
                 var inputValue = $('#myInput').val();
-                console.log(inputValue);
-                $infoTable.append(
-                `<div class="info-table-values" data-id="">
-                            <div class="name">${inputValue}</div>
-                            <div><input class="attending" type="checkbox" 'checked'}></div>
-                            <div><input class="vegetarian" type="checkbox"}></div>
-                            <div><input class="age3" type="checkbox"}></div>
-                </div>`
-                )
+                if (inputValue == "" || inputValue == null) {
+                    showToast("First type the guest's name into the input field.", () => $('#myInput').addClass('shake'), () => $('#myInput').removeClass('shake'))
+                } else {
+                    $infoTableData.append(
+                    `<div class="info-table-values" data-id="">
+                                <div class="name">${inputValue}</div>
+                                <div><input class="attending" type="checkbox" 'checked'}></div>
+                                <div><input class="vegetarian" type="checkbox"}></div>
+                                <div><input class="age3" type="checkbox"}></div>
+                    </div>`
+                    )
+                }
             })
+
+            function respondSent() {
+                $.ajax({
+                    url: `https://api.nino-ricsi.wedding:3000/groups/${groupId}`,
+                    type: 'PATCH',
+                    contentType: 'application/json',
+                    data: JSON.stringify({respond: true}),
+                    success: function(data) {
+                        showToast("Köszönjük, megkaptuk a válaszod.");
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
 
             let data = [];
 
@@ -340,7 +385,6 @@
                 data.length = 0;
                 $(".info-table-values").each(function() {
                     if ($(this).data('id') != "") {
-                        console.log("van data");
                         data.push({
                             _id: $(this).data('id'),
                             attending: $(this).find('.attending').is(':checked'),
@@ -365,6 +409,7 @@
                     data: JSON.stringify(data),
                     success: function(data) {
                         console.log(data);
+                        respondSent();
                     },
                     error: function(error) {
                         console.log('Error:', error);

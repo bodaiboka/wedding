@@ -6,6 +6,7 @@
     --col-background-1: rgb(228, 128, 115);
     --col-background-2: #ffa080;
     --col-background-3: rgb(233, 175, 166);
+    --col-background-4: hsl(6, 19%, 68%);
 }
 
 @font-face {
@@ -374,6 +375,11 @@ p.info-details-note {
     }
 }
 
+.info-table-data {
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
 .info-table div {
     margin-bottom: 5px;
 }
@@ -432,7 +438,105 @@ p.info-details-note {
     background-color: #BBBBBB;
 }
 
+.info-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
 
+.info-add-guest-button {
+    font-family: 'Cinzel', serif;
+    flex-basis: 50%;
+    background-color: var(--col-background-2);
+    color: var(--col-white);
+    border-radius: 20px;
+    padding: 8px;
+    border: 0;
+    cursor: pointer;
 
-/* CHECKBOX */
+}
 
+#myInput {
+    font-family: 'Cinzel', serif;
+    flex-basis: 50%;
+    background-color: var(--col-background-3);
+    color: var(--col-white);
+    border-radius: 20px;
+    padding: 8px;
+    border: 1px solid var(--col-background-4);
+}
+
+.info-send-button {
+    font-family: 'Cinzel', serif;
+    width: 100%;
+    border-radius: 20px;
+    padding: 8px;
+    border: 0;
+    margin-top: 20px;
+    background-color: var(--col-background-2);
+    color: var(--col-white);
+    cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+    background-color: var(--col-background-2) !important;
+    border: 0;
+    cursor: pointer;
+  }
+  input[type='checkbox']:checked:after {
+    content: '\2713';
+    color:white;
+    cursor: pointer;
+  }
+  input[type='checkbox']{
+    cursor: pointer;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    width: 20px !important;
+    height: 20px !important;
+    appearance: none;
+    border-radius:10%;
+    border: 0;
+    box-shadow: none;
+    font-size: 1em;
+    background-color: var(--col-background-3) !important;
+    border: 1px solid var(--col-background-4);
+  }
+
+::selection {
+    background-color: var(--col-background-2); 
+    color: #ffffff; 
+  }
+
+  .popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.548);
+    display: none;
+    font-size: 0.8em;
+    width: 80%;
+    max-width: 380px;
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-10px); }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .shake {
+    animation: shake 1s ease-in-out;
+  }
