@@ -119,7 +119,7 @@
     <script>
         $(document).ready(function() {
 
-            function showToast(message, pre, post) {
+            function showToast(message, duration, pre, post) {
                 var popup = $('#popup');
                 var popupMessage = $('#popup-message');
                 
@@ -131,7 +131,7 @@
                     setTimeout(function() {
                         popup.hide(200)
                         if (post != null) post()
-                    }, 4000);
+                    }, duration);
                 }  
             }
 
@@ -153,7 +153,7 @@
                     dinner_title: "Vacsora",
                     dinner_description: "Az esküvői lakoma nem csak az ételekről szól, hanem az öröm, a nevetés és a szeretet megosztásáról is. Ezen az estén egy hangulatos sátras vacsora mellett kívánunk veletek koccintani a jövőre.",
                     cake_title: "Torta",
-                    cake_description: "Csatlakozzatok hozzánk, amint egy édes szelettel megpecsételjük az életünk új fejezetét. A torta íze olyan, mint a mi szerelmünk: édes és ellenállhatatlan. :)",
+                    cake_description: "Csatlakozzatok hozzánk, amint egy édes szelettel megpecsételjük az életünk új fejezetét. A torta íze olyan, mint a mi szerelmünk: édes és ellenállhatatlan. :)<br>A tortázást a menyecsketánccal folytatjuk.",
                     info_title: "Visszajelzés",
                     info_description: "Kérünk benneteket, hogy jelezzetek vissza az alábbi form kitöltésével legkésőbb július 23-ig. A '3 év alatti' oszlop a legfeljebb 3 éves gyermekekre vonatkozik.",
                     info_name: "Név",
@@ -167,7 +167,8 @@
                     popup_companion: "Először add meg a kísérő nevét a mezőben.",
                     popup_respond_success: "Köszönjük, megkaptuk a válaszod.",
                     tipp_google_maps: "Kattints a címre, hogy ha szeretnéd megtekinteni google maps-en is.",
-                    tipp_respond: "Köszönjük, hogy már válaszoltál. Július 23-ig még módosíthatod válaszodat, csak küldd el újra."
+                    tipp_respond: "Köszönjük, hogy már válaszoltál. Július 23-ig még módosíthatod válaszodat, csak küldd el újra.",
+                    tipp_gift: "Ha ajándékkal készülsz, nagyra értékelnénk a pénzbeli hozzájárulást, ami segít elindulnunk a házas élet útján."
                 },
 
                 "en": {
@@ -198,7 +199,8 @@
                     popup_companion: "Please enter your companion's name in the relevant field provided.",
                     popup_respond_success: "Thank you, we have received your response.",
                     tipp_google_maps: "Please click on the address, if you would like to view it on Google Maps as well.",
-                    tipp_respond: "Thank you for your response. You can make modifications to your answer until July 23, simply send it again."
+                    tipp_respond: "Thank you for your response. You can make modifications to your answer until July 23, simply send it again.",
+                    tipp_gift: "If you wish to give a gift, we would be honored to receive a monetary contribution to help us start our journey as a married couple."
                 },
 
                 "ge": {
@@ -229,9 +231,9 @@
                     popup_companion: "გთხოვთ, ჩაწეროთ თქვენი კომპანიონის სრული სახელი შესაბამის ველში.",
                     popup_respond_success: "დიდი მადლობა, თქვენი პასუხი მიღებულია.",
                     tipp_google_maps: "დააწკაპუნეთ მისამართზე, თუ გსურთ მისი ნახვა Google Maps-ზეც.",
-                    tipp_respond: "გმადლობთ პასუხისთვის. პასუხის შეცვლა შესაძლებელია 23 ივლისამდე, ამავე ფორმის შევსებისა და ხელახლა გამოგზავნით."
+                    tipp_respond: "გმადლობთ პასუხისთვის. პასუხის შეცვლა შესაძლებელია 23 ივლისამდე, ამავე ფორმის შევსებისა და ხელახლა გამოგზავნით.",
+                    tipp_gift: ""
                 },
-
             }
 
             let infoTimeOut;
@@ -322,14 +324,7 @@
                             infoTimeOut = setTimeout(() => {
                                 $infoDetailsContainer.fadeIn(500);
                                 $infoDetailsContainer.removeClass('start')
-                                if (!oneTimeHelp) {
-                                    setTimeout(() => {
-                                        console.log("one tim help");
-                                        showToast(strings[lang]['tipp_google_maps'], null, null)
-                                        oneTimeHelp = true;
-                                        $('.google-maps').addClass('shake');
-                                    }, 4000)
-                                }
+                                $('.google-maps').addClass('shake-rep');
                             }, 500)
                             
                     })
@@ -389,7 +384,7 @@
                 event.preventDefault();
                 var inputValue = $('#myInput').val();
                 if (inputValue == "" || inputValue == null) {
-                    showToast(strings[lang]['popup_companion'], () => $('#myInput').addClass('shake'), () => $('#myInput').removeClass('shake'))
+                    showToast(strings[lang]['popup_companion'], 4000, () => $('#myInput').addClass('shake'), () => $('#myInput').removeClass('shake'))
                 } else {
                     $infoTableData.append(
                     `<div class="info-table-values" data-id="">
@@ -409,7 +404,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify({respond: true}),
                     success: function(data) {
-                        showToast(strings[lang]['popup_respond_success']);
+                        showToast(strings[lang]['popup_respond_success'], 4000);
                         $('.info-details-respond-p').text(strings[lang]['tipp_respond']);
                     },
                     error: function(error) {
@@ -456,21 +451,14 @@
                 });
             })
             
-            // Get the scroll container element
-            var scrollContainer = document.querySelector(".info-details-container");
-
-            // Add an event listener for the scroll-snap-align event
-            scrollContainer.addEventListener("scroll-snap-align", function(event) {
-            console.log("SCROLLED");
-            });
-
-            // Function to handle the scroll-snap-align event
-            function handleSnapAlign(event) {
-            var currentSnapIndex = event.target.scrollLeft / event.target.clientWidth;
-            var nextSnapIndex = Math.ceil(currentSnapIndex);
-
-            console.log("Scrolled to next snap point: " + nextSnapIndex);
-}
+            $('.dinner-btn').on('click', (event) => {
+                if (lang == 'hu' || lang == 'en') {
+                    setTimeout(()=>{
+                        showToast(strings[lang]['tipp_gift'], 10000, null, null);
+                    }, 2000)
+                    
+                }
+            })
 
         })
     </script>
