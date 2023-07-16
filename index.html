@@ -55,8 +55,9 @@
         <div class="info-details-section">
             <p class="info-details-time">15:00</p>
             <h2 data-translate-key="church_title">Templomi esküvő</h2>
+            <a href="https://goo.gl/maps/Sey7AfuV1kieLpu86">
             <p>Mindszenti templom</p>
-            <p>Miskolc, Mindszent tér 2-4, 3530</p>
+            <p>Miskolc, Mindszent tér 2-4, 3530 <i class="bi bi-geo-alt-fill"></i></p></a>
             <p class="info-details-note" data-translate-key="church_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
         </div>
         <div class="info-details-section">
@@ -128,6 +129,8 @@
                     }, 4000);
                 }  
             }
+
+            let oneTimeHelp = false;
             let lang  = 'hu';
             let strings = {
 
@@ -157,7 +160,8 @@
                     info_add_guest: "Kísérő hozzáadása",
                     info_submit: "Válasz elküldése",
                     popup_companion: "Először add meg a kísérő nevét a mezőben.",
-                    popup_respond_success: "Köszönjük, megkaptuk a válaszod."
+                    popup_respond_success: "Köszönjük, megkaptuk a válaszod.",
+                    tipp_google_maps: "Kattints a címre, hogy ha szeretnéd megtekinteni google maps-en is."
                 },
 
                 "en": {
@@ -168,25 +172,26 @@
                     friday: "Friday",
                     details: "Details",
                     church_title: "Church Ceremony",
-                    church_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    church_description: "We kindly ask you to take your seats in the church 10 minutes before the ceremony begins. Parking is possible in the church's own courtyard.",
                     civil_title: "Civil Ceremony",
-                    civil_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    civil_description: "We will be waiting for you with refreshing bites and drinks at the venue before the ceremony.",
                     dinner_title: "Dinner",
-                    dinner_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    dinner_description: "The wedding feast is not just about the food, but also about sharing joy, laughter, and love. On this evening, we wish to toast to the future with you beside a cozy tented dinner.",
                     cake_title: "Cake",
                     cake_description: "Join us as we seal the new chapter of our lives with a sweet slice. The taste of the cake is like our love: sweet and irresistible. :)",
                     info_title: "Please respond",
-                    info_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!",
+                    info_description: "We kindly ask you to respond by filling out the form below by July 23 at the latest. The 'up to 3y old' column refers to children up to 3 years old.",
                     info_name: "Name",
                     info_attending: "Will attend",
                     info_vegan: "Vegan",
-                    info_age3: "under 3y old",
+                    info_age3: "up to 3y old",
                     info_note: "Note",
                     input_placeholder: "Name",
                     info_add_guest: "Add a companion",
                     info_submit: "Submit a reply",
                     popup_companion: "First type your companion's name into the input field.",
-                    popup_respond_success: "Thank you, we have received your response."
+                    popup_respond_success: "Thank you, we have received your response.",
+                    tipp_google_maps: "Click on the address if you would like to view it on Google Maps as well."
                 },
 
                 "ge": {
@@ -215,7 +220,9 @@
                     info_add_guest: "Kísérő hozzáadása",
                     info_submit: "Válasz elküldése",
                     popup_companion: "Először add meg a kísérő nevét a mezőben.",
-                    popup_respond_success: "Köszönjük, megkaptuk a válaszod."
+                    popup_respond_success: "Köszönjük, megkaptuk a válaszod.",
+                    tipp_google_maps: "Click on the address if you would like to view it on Google Maps as well."
+
                 }
 
             }
@@ -308,6 +315,13 @@
                             infoTimeOut = setTimeout(() => {
                                 $infoDetailsContainer.fadeIn(500);
                                 $infoDetailsContainer.removeClass('start')
+                                if (!oneTimeHelp) {
+                                    setTimeout(() => {
+                                        console.log("one tim help");
+                                        showToast(strings[lang]['tipp_google_maps'], null, null)
+                                        oneTimeHelp = true;
+                                    }, 4000)
+                                }
                             }, 500)
                             
                     })
