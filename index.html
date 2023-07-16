@@ -406,7 +406,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify({respond: true}),
                     success: function(data) {
-                        showToast("Köszönjük, megkaptuk a válaszod.");
+                        showToast(strings[lang]['popup_respond_success']);
                         $('.info-details-respond-p').text(strings[lang]['tipp_respond']);
                     },
                     error: function(error) {
@@ -451,7 +451,21 @@
                         console.log('Error:', error);
                     }
                 });
-            }) 
+            })
+            
+            // Get the scroll container element
+            var scrollContainer = document.getElementById(".info-details-container");
+
+            // Add an event listener for the scroll-snap-align event
+            scrollContainer.addEventListener("scroll-snap-align", handleSnapAlign);
+
+            // Function to handle the scroll-snap-align event
+            function handleSnapAlign(event) {
+            var currentSnapIndex = event.target.scrollLeft / event.target.clientWidth;
+            var nextSnapIndex = Math.ceil(currentSnapIndex);
+
+            console.log("Scrolled to next snap point: " + nextSnapIndex);
+}
 
         })
     </script>
