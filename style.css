@@ -302,6 +302,7 @@ main {
     scale: 1.2;
 }
 
+/*
 .info-bar::after {
     content: '';
     z-index: 1;
@@ -316,7 +317,30 @@ main {
     filter: drop-shadow(2px 1px 3px #535353a2);
     transition: all .5s;
     translate: var(--translate-btn);
-}
+}*/
+
+.info-bar::after {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--col-white);
+    background-color: var(--col-background-2);
+    width: 1.5em;
+    height: 1.5em;
+    margin: .14em;
+    box-sizing: border-box;
+    transition: all .5s;
+    translate: var(--translate-btn);
+  }
+  
+  /* For Safari */
+  @supports (-webkit-filter: drop-shadow(0 0 0)) {
+    .info-bar::after {
+      -webkit-filter: drop-shadow(2px 1px 3px #535353a2);
+      -webkit-box-shadow: 2px 1px 3px #535353a2;
+    }
+  }
 
 .info-details-container {
     position: absolute;
@@ -329,7 +353,7 @@ main {
     overflow-x: scroll;
     margin-top: 1em;
     scroll-behavior: smooth;
-
+    pointer-events: none;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -344,6 +368,7 @@ main {
 a {
     text-decoration: none;
     color: var(--col-white);
+    pointer-events: auto;
 }
 
 .info-details-container.start {
@@ -351,10 +376,12 @@ a {
 }
 
 .info-details-section {
+    pointer-events: none;
     padding: 1em 2em 1em 2em;
     flex: 0 0 100%;
     scroll-snap-align: start;
 }
+
 
 .info-details-respond-p {
     padding-bottom: 20px;
@@ -400,9 +427,7 @@ p.info-details-note {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
-
 
 .info-table .name {
     padding: 0;
@@ -465,7 +490,7 @@ p.info-details-note {
     padding: 8px;
     border: 0;
     cursor: pointer;
-
+    pointer-events: auto;
 }
 
 #myInput {
@@ -476,6 +501,7 @@ p.info-details-note {
     border-radius: 20px;
     padding: 8px;
     border: 1px solid var(--col-background-4);
+    pointer-events: auto;
 }
 
 .info-send-button {
@@ -488,19 +514,23 @@ p.info-details-note {
     background-color: var(--col-background-2);
     color: var(--col-white);
     cursor: pointer;
+    pointer-events: auto;
 }
 
 input[type='checkbox']:checked {
+    pointer-events: auto;
     background-color: var(--col-background-2) !important;
     border: 0;
     cursor: pointer;
   }
   input[type='checkbox']:checked:after {
+    pointer-events: auto;
     content: '\2713';
     color:white;
     cursor: pointer;
   }
   input[type='checkbox']{
+    pointer-events: auto;
     cursor: pointer;
     text-align: center;
     display: table-cell;
