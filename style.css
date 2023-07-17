@@ -478,12 +478,10 @@ p.info-details-note {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
 }
 
 .info-add-guest-button {
     font-family: 'Cinzel', serif;
-    flex-basis: 80%;
     background-color: var(--col-background-2);
     color: var(--col-white);
     border-radius: 20px;
@@ -491,17 +489,20 @@ p.info-details-note {
     border: 0;
     cursor: pointer;
     pointer-events: auto;
+    font-size: 0.7em;
 }
 
 #myInput {
     font-family: 'Cinzel', serif;
-    flex-basis: 30%;
     background-color: var(--col-background-3);
     color: var(--col-white);
     border-radius: 20px;
     padding: 8px;
+    max-width: 180px;
+    margin-right: 10px;
     border: 1px solid var(--col-background-4);
     pointer-events: auto;
+    font-size: 0.7em;
 }
 
 .info-send-button {
