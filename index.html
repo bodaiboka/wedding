@@ -62,7 +62,7 @@
             <a href="https://goo.gl/maps/Sey7AfuV1kieLpu86">
             <p class="google-maps">Mindszenti templom</p>
             <p class="google-maps">Miskolc, Mindszent tér 2-4, 3530 <i class="bi bi-geo-alt-fill"></i></p></a>
-            <p class="info-details-note" data-translate-key="church_description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nesciunt eius doloremque fugiat dolores!</p>
+            <p class="info-details-note" data-translate-key="church_description">Sok szeretettel várunk mindenkit az esküvői szertartásra. Kérünk benneteket, hogy 10 perccel a szertartás kezdete előtt foglaljatok helyet a templomban.</p>
         </div>
         <div class="info-details-section">
             <p class="info-details-time">17:00</p>
@@ -345,6 +345,13 @@
                 groupId = localStorage.getItem('groupId');
             } else {
                 localStorage.setItem('groupId', groupId);
+            }
+            if (groupId == null) {
+                $('.civil-btn').remove();
+                $('.dinner-btn').remove();
+                $('.cake-btn').remove();
+                $('.info-btn').remove();
+                
             }
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`, function(data) {
