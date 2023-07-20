@@ -362,12 +362,10 @@
                 $('#myInput').attr('placeholder', strings[lang]['input_placeholder']);
                 $('#guest-names').append(`${data['address']},`);
                 if (data['respond'] == true) {
-                    console.log("volt respond");
                     $('.info-details-respond-p').text(strings[lang]['tipp_respond']);
                 }
             })
             .fail(function(xhr, status, error) {
-                console.log("Error nem jó:", error);
                 $('.civil-btn').remove();
                 $('.dinner-btn').remove();
                 $('.cake-btn').remove();
