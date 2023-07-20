@@ -346,16 +346,10 @@
             } else {
                 localStorage.setItem('groupId', groupId);
             }
-            if (groupId == null) {
-                $('.civil-btn').remove();
-                $('.dinner-btn').remove();
-                $('.cake-btn').remove();
-                $('.info-btn').remove();
-                
-            }
+            
 
-            $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`, function(data) {
-                console.log(data);
+            $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}`)
+            .done(function(data) {
                 lang = data['lang'];
                 if (lang != 'hu' && lang != 'en' && lang != 'ge') {
                     lang = 'hu';
@@ -372,6 +366,13 @@
                     $('.info-details-respond-p').text(strings[lang]['tipp_respond']);
                 }
             })
+            .fail(function(xhr, status, error) {
+                console.log("Error nem jó:", error);
+                $('.civil-btn').remove();
+                $('.dinner-btn').remove();
+                $('.cake-btn').remove();
+                $('.info-btn').remove();
+            });
 
             $.get(`https://api.nino-ricsi.wedding:3000/groups/${groupId}/guests`, function(data) {
                 data.forEach(element => {
