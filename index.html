@@ -340,6 +340,15 @@
                 container.scrollTo($(this).index() * $infoDetailsContainer.first().outerWidth(true), 250);
             });
 
+            let guestId = getQueryParam('guest');
+            if (guestId != null) {
+                $.get(`https://api.nino-ricsi.wedding:3000/guests/${guestId}`)
+                .done(function (data) {
+                    $("body").empty();
+                    $("body").append(`<div id="newElement">${data['name']}</div>`)
+                })
+            }
+
             let groupId = getQueryParam('g');
             if (groupId == null) {
                 groupId = localStorage.getItem('groupId');
