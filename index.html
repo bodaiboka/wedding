@@ -345,8 +345,36 @@
                 $.get(`https://api.nino-ricsi.wedding:3000/guests/${guestId}`)
                 .done(function (data) {
                     $("body").empty();
-                    $("body").append(`<div id="newElement">${data['name']}</div>`)
+                    $("body").append(`<div id="taskContent"></div>`);
+                    $("#taskContent").append(`<div class="task-title">A Feladat</div>`);
+                    $("#taskContent").append(`<div class="task-description" id="newElement">Kedves ${data['address']}, teljesítsd az alábbi feladatot, hogy részt vehess a tombolán: </div>`)
+                    $("#taskContent").append(`<div id="the-task" class="task-description">${data['task']}</div>`)
+                    $("#taskContent").append(`<div class="task-description">Ha teljesítetted a feladatod, kérj meg valakit, hogy igazolja. Ehhez az illető használja a saját QR kódját és kövesse az "Igazolás" bekezdésben leírtakat. Ezután frissítheted az oldalt, vagy újra leolvashatod a QR kódodat, hogy lásd a tombola számodat.</div>`)
+                    $("#taskContent").append(`<div class="task-title">Igazolás</div>`);
+                    $("#taskContent").append(`<div class="task-description">Ha valaki teljesítette a saját feladatát és te tanúja voltál ennek, akkor kérünk, hogy jelezd felénk, hogy az illető részt vehessen a tombolán. Ehhez válaszd ki a nevét az alábbi lenyíló listából, majd nyomd meg a "Megerősítem" gombot. Saját feladatodat nem tudod igazolni.</div>`)
+                    $("#taskContent").append(`<div class="cert-frame">
+                                                <div class="task-description">Igazolom, hogy </div>
+                                                <div id=guestListHolder><select id="guestList"></select></div>
+                                                <div class="task-description">teljesítette a feladatát. </div>
+                                                <button class="pink-button">Megerősítem</button>
+                                                </div>`);
+                    $.get('https://api.nino-ricsi.wedding:3000/guests', function(data) {
+                        data.sort(function(a, b) {
+                            return a.name.localeCompare(b.name);
+                        });
+                        data.forEach(function(guest) {
+                            if (guest._id != guestId && guest.attending) {
+                                var option = $('<option>').text(guest.name).val(guest._id);
+                                $('#guestList').append(option);
+                            }
+                        });
+                        })
+                        .fail(function() {
+                            alert("Error occurred while fetching the data");
+                        });
                 })
+
+
             }
 
             let groupId = getQueryParam('g');

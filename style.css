@@ -11,12 +11,12 @@
 
 @font-face {
     font-family: hellohoney;
-    src: url('public/fonts/hellohoney.otf');
+    src: url('fonts/hellohoney.otf');
 }
 
 @font-face {
     font-family: wedding-icons;
-    src: url('public/fonts/WeddingIcons.ttf');
+    src: url('fonts/WeddingIcons.ttf');
 }
 
 * {
@@ -36,12 +36,13 @@ p {
 }
 
 html {
-    background-image: linear-gradient(180deg, var(--col-background-3) 16%, var(--col-background-1) 55%);
+    background-color: var(--col-background-1);
     height: fit-content;
     height: 100dvh;
 }
 
 body {
+    background-image: linear-gradient(180deg, var(--col-background-3) 16%, var(--col-background-1) 55%);
     display: flex;
     justify-content: center;
     height: fit-content;
@@ -596,3 +597,55 @@ input[type='checkbox']:checked {
     animation: shake-rep 4s ease-in-out;
     animation-iteration-count: infinite;
   }
+
+  #taskContent {
+    max-width: 90%;
+    padding-bottom: 100px;
+  }
+
+  #guestListHolder {
+    display: flex;
+    justify-content: center;
+  }
+
+  .pink-button {
+    font-family: 'Cinzel', serif;
+    width: 100%;
+    border-radius: 20px;
+    padding: 8px;
+    border: 0;
+    margin-top: 20px;
+    background-color: var(--col-background-2);
+    color: var(--col-white);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.task-title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: hellohoney;
+    text-align: center;
+    font-size: 12vw;
+    font-weight: 500;
+    color: var(--col-white);
+}
+
+.task-description {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.cert-frame {
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+    border: 1px dotted white;
+    margin-bottom: 20px;
+}
+
+#the-task {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 10px 20px 10px 20px;
+    border: 1px dotted white;
+}
