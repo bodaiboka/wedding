@@ -348,7 +348,7 @@
                     $("body").append(`<div id="taskContent"></div>`);
                     if (data['taskdone']) {
                         $("#taskContent").append(`<div class="task-title">Tombola számod:</div>`);
-                        $("#taskContent").append(`<div class="cert-frame"  ${data['tombola']}</div>`);
+                        $("#taskContent").append(`<div class="tombola-frame">${data['tombola']}</div>`);
                         $("#taskContent").append(`Gratulálunk ${data['address']}! Sok sikert a tombolához.`);    
                     } else {
                         $("#taskContent").append(`<div class="task-title">A Feladat</div>`);
