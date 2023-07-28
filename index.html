@@ -346,6 +346,10 @@
                 .done(function (data) {
                     $("body").empty();
                     $("body").append(`<div id="taskContent"></div>`);
+                    if (data['taskdone']) {
+                        $("#taskContent").append(`<div class="task-title">Tombola számod: ${data['tombola']}</div>`);
+                        $("#taskContent").append(`Gratulálunk ${data['address']}! Sok sikert a tombolához.`);    
+                    } else {
                     $("#taskContent").append(`<div class="task-title">A Feladat</div>`);
                     $("#taskContent").append(`<div class="task-description" id="newElement">Kedves ${data['address']}, teljesítsd az alábbi feladatot, hogy részt vehess a tombolán: </div>`)
                     $("#taskContent").append(`<div id="the-task" class="task-description">${data['task']}</div>`)
@@ -356,8 +360,13 @@
                                                 <div class="task-description">Igazolom, hogy </div>
                                                 <div id=guestListHolder><select id="guestList"></select></div>
                                                 <div class="task-description">teljesítette a feladatát. </div>
-                                                <button class="pink-button">Megerősítem</button>
+                                                <button id="send-task" class="pink-button">Megerősítem</button>
                                                 </div>`);
+                    $("#taskContent").append(`
+                    <div id="popup" class="popup">
+                        <span id="popup-message"></span>
+                    </div>
+                    `)
                     $.get('https://api.nino-ricsi.wedding:3000/guests', function(data) {
                         data.sort(function(a, b) {
                             return a.name.localeCompare(b.name);
@@ -368,10 +377,29 @@
                                 $('#guestList').append(option);
                             }
                         });
+                        $("#send-task").on("click", function() {
+                            console.log("click");
+                            var selectedGuestId = $('#guestList').val();
+                            $.ajax({
+                                url: `https://api.nino-ricsi.wedding:3000/guests/${selectedGuestId}`,
+                                type: 'PATCH',
+                                contentType: 'application/json',
+                                data: JSON.stringify({taskdone: true}),
+                                success: function(data) {
+                                    console.log("siker");
+                                    showToast(strings[lang]['popup_respond_success'], 4000);
+                                },
+                                error: function(error) {
+                                    console.log('Error:', error);
+                                    showToast(error, 4000);
+                                }
+                            });
+                        })
                         })
                         .fail(function() {
                             alert("Error occurred while fetching the data");
                         });
+                    }
                 })
 
 
