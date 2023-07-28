@@ -642,6 +642,11 @@ input[type='checkbox']:checked {
     margin-bottom: 20px;
 }
 
+.tombola-holder {
+    display: flex;
+    justify-content: center;
+}
+
 .tombola-frame {
     margin-top: 20px;
     padding: 10px 20px 10px 20px;
@@ -652,6 +657,7 @@ input[type='checkbox']:checked {
     font-size: 12vw;
     font-weight: 500;
     color: var(--col-white);
+    display: inline-block;
 }
 
 #the-task {
