@@ -642,6 +642,18 @@ input[type='checkbox']:checked {
     margin-bottom: 20px;
 }
 
+.tombola-frame {
+    margin-top: 20px;
+    padding: 10px 20px 10px 20px;
+    border: 1px dotted white;
+    margin-bottom: 20px;
+    font-family: hellohoney;
+    text-align: center;
+    font-size: 12vw;
+    font-weight: 500;
+    color: var(--col-white);
+}
+
 #the-task {
     margin-top: 20px;
     margin-bottom: 20px;
