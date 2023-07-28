@@ -648,7 +648,6 @@ input[type='checkbox']:checked {
 }
 
 .tombola-frame {
-    margin-top: 20px;
     padding: 10px 20px 10px 20px;
     border: 1px dotted white;
     margin-bottom: 20px;
